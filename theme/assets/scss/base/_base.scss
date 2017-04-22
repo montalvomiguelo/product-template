@@ -1,0 +1,63 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+a, a:visited {
+  color: $primary-color;
+  text-decoration: none;
+}
+
+body {
+  background-color: $background-color;
+  color: $primary-color;
+  font-family: $primary-font;
+  font-size: 14px;
+  line-height: 1;
+  padding-top: $header-height-mobile;
+
+  @include at-query($min, $post-break-small) {
+    padding-top: $header-height-tablet;
+  }
+
+  @include at-query($min, $post-break-medium) {
+    padding-top: $header-height;
+  }
+
+}
+
+button, a.button {
+  border: 0px;
+  background: $primary-color;
+  color: $background-color;
+  display: block;
+  max-width: 300px;
+  outline: none;
+  padding: 20px;
+  width: 100%;
+
+  &:hover, &:active, &:focus {
+    opacity: .8;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+input, textarea {
+  background: $background-color;
+  border: 1px solid $secondary-color;
+  color: $secondary-color;
+  font-family: $secondary-font;
+  font-size: 16px;
+  max-width: 100%;
+  padding: 14px;
+}

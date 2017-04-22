@@ -1,0 +1,31 @@
+.product-heading {
+  @extend %product-heading;
+
+  .product-subtitle {
+    color: $secondary-color;
+    font-family: $secondary-font;
+    font-size: 14px;
+    margin-bottom: 20px;
+
+    @include at-query($min, $post-break-small) {
+      margin-bottom: 20px;
+    }
+
+    @include at-query($min, $post-break-medium) {
+      font-size: 18px;
+      margin-bottom: 50px;
+    }
+  }
+
+  .product-title {
+    font-size: 22px;
+    line-height: 26px;
+    margin-bottom: 10px;
+
+    @include at-query($min, $post-break-medium) {
+      font-size: 32px;
+      line-height: 42px;
+      margin-bottom: 13px;
+    }
+  }
+}

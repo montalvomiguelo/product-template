@@ -1,0 +1,28 @@
+.product-images {
+  margin-bottom: 35px;
+
+  @include at-query($min, $post-break-small) {
+    float: right;
+    margin-bottom: 0;
+    max-width: 48%;
+  }
+
+  @include at-query($min, $post-break-medium) {
+    max-width: 50%;
+  }
+
+  @include at-query($min, $post-break-large) {
+    max-width: 55%;
+  }
+
+  @include at-query($min, $post-break-extra-large) {
+    max-width: 1000px;
+    width: 60%;
+  }
+
+  .product-image {
+    display: block;
+    margin-bottom: 2px;
+    width: 100%;
+  }
+}

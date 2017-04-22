@@ -1,0 +1,40 @@
+$primary-font: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$secondary-font: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$background-color: #FFFFFF;
+
+$primary-color: #121212;
+
+$secondary-color: #A0A0A0;
+
+$border-color: #A0A0A0;
+
+$welcome-background-color: #F9F9F9;
+
+$welcome-text-color: #121212;
+
+$error-text-color: #F04848;
+
+$header-height: 220px;
+$header-height-tablet: 120px;
+$header-height-mobile: 100px;
+$border-radius: 4px;
+
+$tablet-padding: 40px;
+$mobile-padding: 20px;
+
+$viewport-increment: 1px;
+
+$break-extra-large: 1200px;
+$break-large: 945px;
+$break-medium: 800px;
+$break-small: 668px;
+$break-extra-small: 500px;
+
+$post-break-small: $break-small + $viewport-increment;
+$post-break-medium: $break-medium + $viewport-increment;
+$post-break-large: $break-large + $viewport-increment;
+$post-break-extra-large: $break-extra-large + $viewport-increment;
+
+$min: min-width;
+$max: max-width;

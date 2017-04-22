@@ -1,0 +1,38 @@
+.product-description {
+  color: $secondary-color;
+  font-family: $secondary-font;
+  font-size: 14px;
+  line-height: 24px;
+
+  p {
+    margin: 0 0 1em;
+  }
+
+  a[href] {
+    text-decoration: underline;
+
+    &:hover {
+      opacity: .6;
+    }
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  ol, ul {
+    margin: 1em 0;
+    padding: 0;
+  }
+
+  ul {
+    list-style: disc;
+    list-style-position: inside;
+  }
+
+  ol {
+    list-style: decimal;
+    list-style-position: inside;
+  }
+}

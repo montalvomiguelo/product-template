@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: $primary-color;
   text-decoration: none;
 }
@@ -25,9 +26,20 @@ body {
 
 }
 
-button, a.button {
-  border: 0px;
+body,
+input,
+textarea,
+button,
+select {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+button,
+a.button {
   background: $primary-color;
+  border-radius: $border-radius;
+  border: 0px;
   color: $background-color;
   display: block;
   max-width: 300px;
@@ -35,12 +47,19 @@ button, a.button {
   padding: 20px;
   width: 100%;
 
-  &:hover, &:active, &:focus {
+  &:hover,
+  &:active,
+  &:focus {
     opacity: .8;
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: normal;
   margin: 0;
   padding: 0;
@@ -52,12 +71,43 @@ html {
   position: relative;
 }
 
-input, textarea {
+input,
+textarea {
   background: $background-color;
+  border-radius: $border-radius;
   border: 1px solid $secondary-color;
   color: $secondary-color;
   font-family: $secondary-font;
   font-size: 16px;
   max-width: 100%;
   padding: 14px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: {
+    image: url('{{ "ico-select.svg" | asset_url }}');
+    repeat: no-repeat;
+    position: right 20px center;
+    color: transparent;
+  }
+  border-radius: $border-radius;
+  border: 1px solid $secondary-color;
+  color: $secondary-color;
+  font-family: $secondary-font;
+  font-size: 14px;
+  height: 60px;
+  line-height: 2em;
+  max-width: 100%;
+  padding: 0 50px 0 20px;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+textarea {
+  min-height: 100px;
 }

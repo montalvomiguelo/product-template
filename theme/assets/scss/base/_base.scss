@@ -74,6 +74,13 @@ textarea {
   padding: 14px;
 }
 
+label {
+  color: $secondary-color;
+  font-size: 12px;
+  margin-bottom: 1em;
+  text-transform: uppercase;
+}
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;

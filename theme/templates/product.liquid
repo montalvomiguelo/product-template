@@ -65,33 +65,42 @@
 <div class="product-menu-container">
   <form class="product-menu-form" method="post" action="/cart">
     <div class="product-menu-slideout">
-      {% comment %}
-        Add product variants as a dropdown.
-          - By default, each variant (or combination of variants) will display as its own <option>
-          - To separate these into multiple steps, which we suggest, use option_selection.js (see below)
+      <div class="product-menu-slideout__header">
+        <h6>
+          {{ product.title }}
+          <small class="js-current-variant-price">{{ current_variant.price | money }}</small>
+        </h6>
+        <a class="icon-x" href="#"></a>
+      </div>
+      <div class="product-menu-slideout__content">
+        {% comment %}
+          Add product variants as a dropdown.
+            - By default, each variant (or combination of variants) will display as its own <option>
+            - To separate these into multiple steps, which we suggest, use option_selection.js (see below)
 
-        You can leverage jQuery to add a callback on page load and each time the select element changes:
-          - Include option_selection.js (as seen at the bottom of this file)
-          - This allows you to use JavaScript anytime the variant dropdown changes
-          - This also separates out your variant options (ie. size, color, etc.) to separate select elements
+          You can leverage jQuery to add a callback on page load and each time the select element changes:
+            - Include option_selection.js (as seen at the bottom of this file)
+            - This allows you to use JavaScript anytime the variant dropdown changes
+            - This also separates out your variant options (ie. size, color, etc.) to separate select elements
 
-        For more information on products with multiple options, visit:
-          - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
-      {% endcomment %}
-      <select id="productSelect" name="id">
-        {% for variant in product.variants %}
-          {% if variant.available %}
-            {% comment %}
-              Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
-            {% endcomment %}
-            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
-          {% else %}
-            <option disabled="disabled">
-            {{ variant.title }} - Sold Out
-            </option>
-          {% endif %}
-        {% endfor %}
-      </select>
+          For more information on products with multiple options, visit:
+            - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
+        {% endcomment %}
+        <select id="productSelect" name="id">
+          {% for variant in product.variants %}
+            {% if variant.available %}
+              {% comment %}
+                Note: if you use option_selection.js, your <select> tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
+              {% endcomment %}
+              <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+            {% else %}
+              <option disabled="disabled">
+              {{ variant.title }} - Sold Out
+              </option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
     </div>
     <div class="product-menu">
       {% include 'breadcrumb' %}

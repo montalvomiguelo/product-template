@@ -22,3 +22,18 @@
     padding-right: 60px;
   }
 }
+
+%product-menu-slideout__content {
+  padding: 5px 7%;
+}
+
+%table {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+%table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}

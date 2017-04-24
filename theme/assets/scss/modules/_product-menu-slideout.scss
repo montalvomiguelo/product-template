@@ -1,0 +1,49 @@
+.product-menu-slideout {
+
+}
+
+.product-menu-slideout__content {
+  @extend %product-menu-slideout__content;
+
+  .selector-wrapper {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding-right: 10px;
+
+    label {
+      display: block;
+    }
+  }
+}
+
+.product-menu-slideout__header {
+  @extend %product-menu-slideout__content;
+  @extend %table;
+  border-bottom: 1px solid rgba($secondary-color, 0.2);
+  font-size: 14px;
+  margin-bottom: 20px;
+  position: relative;
+
+  h6 {
+    @extend %table-cell;
+    font-size: inherit;
+    line-height: normal;
+
+    small {
+      display: block;
+      font-size: inherit;
+    }
+  }
+
+  a {
+    @extend %table-cell;
+    height: 50px;
+    line-height: 50px;
+    text-align: right;
+    width: 50px;
+
+    &:hover {
+      opacity: .6;
+    }
+  }
+}

@@ -88,7 +88,7 @@ var theme = (function($) {
     var $addToBag = $('#AddToBag'),
         $productPrice = $('#ProductPrice'),
         $addToBagText= $('#AddToBagText'),
-        $currentVariantPrice = $('#CurrentVariantPrice');
+        $currentVariantPrice = $('.js-current-variant-price');
 
     if (variant) {
       // Swap image.

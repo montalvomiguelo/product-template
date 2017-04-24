@@ -4,9 +4,11 @@
   border: 0px;
   color: $background-color;
   display: block;
-  outline: none;
-  padding: 0 20px;
   height: 50px;
+  line-height: normal;
+  outline: none;
+  padding: 11px 20px;
+  text-align: center;
 
   &:hover,
   &:active,

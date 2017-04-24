@@ -1,12 +1,17 @@
 <div class="product-heading">
 
   {% comment %}
-  Get first variant, or deep linked one
+    Get first variant, or deep linked one
   {% endcomment %}
   {% assign current_variant = product.selected_or_first_available_variant %}
 
   {% comment %}
-  Check if the product is on sale and set a variable to be used below.
+    Variants size
+  {% endcomment %}
+  {% assign variant_count = product.variants | size %}
+
+  {% comment %}
+    Check if the product is on sale and set a variable to be used below.
   {% endcomment %}
   {% assign on_sale = false %}
   {% if product.compare_at_price > product.price %}
@@ -60,6 +65,19 @@
 <div class="product-menu-container">
   <form class="product-menu-form" method="post" action="/cart">
     <div class="product-menu-slideout">
+      {% comment %}
+        Add product variants as a dropdown.
+          - By default, each variant (or combination of variants) will display as its own <option>
+          - To separate these into multiple steps, which we suggest, use option_selection.js (see below)
+
+        You can leverage jQuery to add a callback on page load and each time the select element changes:
+          - Include option_selection.js (as seen at the bottom of this file)
+          - This allows you to use JavaScript anytime the variant dropdown changes
+          - This also separates out your variant options (ie. size, color, etc.) to separate select elements
+
+        For more information on products with multiple options, visit:
+          - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
+      {% endcomment %}
       <select id="productSelect" name="id">
         {% for variant in product.variants %}
           {% if variant.available %}
@@ -77,16 +95,40 @@
     </div>
     <div class="product-menu">
       {% include 'breadcrumb' %}
+
+      {% if variant_count > 1 %}
+        <a href="#" class="button select-options">
+          <span class="select-options__text">{{ 'products.product.select_options' | t }}</span>
+          <span class="select-options__price js-current-variant-price">{{ current_variant.price | money }}</span>
+        </a>
+      {% endif %}
+
       <div class="product-menu-buttons">
         <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
         <button class="button add-to-bag" id="AddToBag" name="add" type="submit" title="{{ 'products.product.add_to_bag' | t }}">
           <span id="AddToBagText" class="add-to-bag__text">{{ 'products.product.add_to_bag' | t }}</span>
-          <span id="CurrentVariantPrice" class="add-to-bag__current-variant-price">{{ current_variant.price | money }}</span>
+          <span class="add-to-bag__current-variant-price js-current-variant-price">{{ current_variant.price | money }}</span>
         </button>
       </div>
     </div>
   </form>
 </div>
+
+{% comment %}
+  To take advantage of a callback on the select dropdown, add option_selection.js
+  and customize the JS in theme.productPage as needed.
+
+  Currently, theme.productPage does the following:
+    - Hides your <select> tag from above
+    - Breaks out the product variants into separate product options, if more than one exists
+    - Generates a <select> tag for each product option
+    - Enables/disables elements based on variant availability
+
+  Callback notes:
+    - Keep the callback available to the global scope (window.selectCallback) so that advanced
+      addons can override it.
+      * E.g. multiple currencies http://docs.shopify.com/manual/configuration/store-customization/currencies-and-translations/currencies/how-to-toggle-between-two-currencies
+{% endcomment %}
 
 <script>
   var selectCallback = function(variant, selector) {

@@ -6,6 +6,6 @@
   }
 
   @include at-query($min, $post-break-medium) {
-    padding: 40px;
+    padding-top: 40px;
   }
 }

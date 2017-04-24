@@ -1,11 +1,12 @@
-.add-to-bag {
+.select-options {
   @extend %add-to-bag;
+  width: 100%;
 }
 
-.add-to-bag__current-variant-price {
+.select-options__price {
   @extend %add-to-bag__price;
 }
 
-.add-to-bag__text {
+.select-options__text {
   @extend %add-to-bag__text;
 }

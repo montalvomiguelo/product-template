@@ -1,3 +1,15 @@
+%add-to-bag {
+  font-size: 12px;
+}
+
+%add-to-bag__price {
+  display: block;
+}
+
+%add-to-bag__text {
+  text-transform: uppercase;
+}
+
 %product-heading {
   @include at-query($min, $post-break-small) {
     float: left;

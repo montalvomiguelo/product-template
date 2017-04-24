@@ -1,0 +1,48 @@
+.js-qty {
+  overflow: visible;
+  position: relative;
+
+  input {
+    background: none;
+    color: $primary-color;
+    display: block;
+    height: 50px;
+    margin: 0;
+    padding: 5px 33.33%;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.js-qty__adjust {
+  @include user-select(none);
+  background: none;
+  border: 0 none;
+  bottom: 0;
+  color: $secondary-color;
+  cursor: pointer;
+  display: block;
+  font-size: 24px;
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 33.33%;
+
+  &:hover,
+  &:focus {
+    opacity: .8;
+  }
+}
+
+.js-qty__adjust--plus {
+  border-left: 1px solid $secondary-color;
+  right: 0;
+}
+
+.js-qty__adjust--minus {
+  border-right: 1px solid $secondary-color;
+  left: 0;
+}

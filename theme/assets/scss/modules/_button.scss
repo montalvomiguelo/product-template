@@ -1,0 +1,21 @@
+.button {
+  background: $primary-color;
+  border-radius: $border-radius;
+  border: 0px;
+  color: $background-color;
+  display: block;
+  outline: none;
+  padding: 0 20px;
+  height: 50px;
+
+  &:hover,
+  &:active,
+  &:focus {
+    opacity: .8;
+  }
+
+  &[disabled],
+  &.disabled {
+    opacity: .5;
+  }
+}

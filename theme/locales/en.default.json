@@ -1,5 +1,17 @@
 {
   "general": {
-    "theme_name": "Your Theme Name"
+    "breadcrumbs": {
+      "home": "Home",
+      "home_link_title": "Back to the home page"
+    }
+  },
+  "products": {
+    "product": {
+      "sold_out": "Sold Out",
+      "on_sale": "On Sale",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "add_to_bag": "Add to Bag"
+    }
   }
 }

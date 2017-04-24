@@ -1,0 +1,8 @@
+.product-menu {
+  @include clearfix();
+  position: relative;
+
+  .breadcrumb {
+    display: none;
+  }
+}

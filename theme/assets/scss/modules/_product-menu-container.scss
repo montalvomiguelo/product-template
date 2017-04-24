@@ -1,0 +1,9 @@
+.product-menu-container {
+  background-color: $background-color;
+  bottom: 0;
+  box-shadow: 0 -1px 1px rgba($secondary-color, 0.2);
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 500;
+}

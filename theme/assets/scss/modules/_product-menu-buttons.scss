@@ -1,0 +1,14 @@
+.product-menu-buttons {
+  @include clearfix();
+  text-align: right;
+
+  .js-qty {
+    float: left;
+    width: 50%;
+  }
+
+  .button {
+    width: 50%;
+  }
+
+}

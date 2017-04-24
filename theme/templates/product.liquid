@@ -22,12 +22,14 @@
   {% endif %}
   <h1 class="product-title">{{ product.title }}</h1>
   <h2 class="product-subtitle">
-    <span class="product-price">{{ current_variant.price | money }}</span>
-    {% if sold_out %}
-      <span class="product-status"> - Sold Out</span>
-    {% elsif on_sale %}
-      <span class="product-status"> - On Sale</span>
-    {% endif %}
+    <span id="ProductPrice" class="product-price">
+      {% if on_sale %}
+        {{ current_variant.price | money }}
+        <s>{{ current_variant.compare_at_price | money }}</s>
+      {% else %}
+        {{ current_variant.price | money }}
+      {% endif %}
+    </span>
   </h2>
 </div>
 
@@ -50,9 +52,15 @@
 </div>
 
 <div class="product-details">
-  <form class="product-form" method="post" action="/cart">
-    <div class="select option-select">
-      <select id="ProductSelect" name="id">
+  <div class="product-description rte">
+    {{ product.description }}
+  </div>
+</div>
+
+<div class="product-menu-container">
+  <form class="product-menu-form" method="post" action="/cart">
+    <div class="product-menu-slideout">
+      <select id="productSelect" name="id">
         {% for variant in product.variants %}
           {% if variant.available %}
             {% comment %}
@@ -67,9 +75,47 @@
         {% endfor %}
       </select>
     </div>
-    <button class="button add-to-bag" id="AddToCart" name="add" type="submit" title="Add to bag">Add to bag</button>
+    <div class="product-menu">
+      {% include 'breadcrumb' %}
+      <div class="product-menu-buttons">
+        <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
+        <button class="button add-to-bag" id="AddToBag" name="add" type="submit" title="{{ 'products.product.add_to_bag' | t }}">
+          <span id="AddToBagText" class="add-to-bag__text">{{ 'products.product.add_to_bag' | t }}</span>
+          <span id="CurrentVariantPrice" class="add-to-bag__current-variant-price">{{ current_variant.price | money }}</span>
+        </button>
+      </div>
+    </div>
   </form>
-  <div class="product-description rte">
-    {{ product.description }}
-  </div>
 </div>
+
+<script>
+  var selectCallback = function(variant, selector) {
+    theme.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector,
+      translations: {
+        addToBag : {{ 'products.product.add_to_bag' | t | json }},
+        soldOut : {{ 'products.product.sold_out' | t | json }},
+        unavailable : {{ 'products.product.unavailable' | t | json }}
+      }
+    });
+  };
+
+  jQuery(function($) {
+    new Shopify.OptionSelectors('productSelect', {
+      product: {{ product | json }},
+      onVariantSelected: selectCallback,
+      enableHistoryState: true
+    });
+
+    // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
+    {% if product.options.size == 1 and product.options.first != 'Title' %}
+      $('.selector-wrapper:eq(0)').prepend('<label for="productSelect-option-0">{{ product.options.first | escape }}</label>');
+    {% endif %}
+    // Hide selectors if we only have 1 variant and its title contains 'Default'.
+    {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+      $('.selector-wrapper').hide();
+    {% endif %}
+  });
+</script>

@@ -1,7 +1,6 @@
 .product-menu-slideout {
-  @include prefixer(transition, all .3s linear, webkit moz spec);
+  @include prefixer(transition, all .3s linear, ms webkit moz spec);
   max-height: 0;
-  opacity: 0;
   overflow-y: hidden;
 }
 

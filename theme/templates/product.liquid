@@ -22,7 +22,7 @@
   {% endif %}
   <h1 class="product-title">{{ product.title }}</h1>
   <h2 class="product-subtitle">
-    <span id="ProductPrice" class="product-price">
+    <span class="product-price js-product-price">
       {% if on_sale %}
         {{ current_variant.price | money }}
         <s>{{ current_variant.compare_at_price | money }}</s>
@@ -63,7 +63,14 @@
       <div class="product-menu-slideout__header">
         <h6>
           {{ product.title }}
-          <small class="js-current-variant-price">{{ current_variant.price | money }}</small>
+          <small class="js-product-price">
+            {% if on_sale %}
+              {{ current_variant.price | money }}
+              <s>{{ current_variant.compare_at_price | money }}</s>
+            {% else %}
+              {{ current_variant.price | money }}
+            {% endif %}
+          </small>
         </h6>
         <a class="icon-x js-product-menu-slideout-close" href="#"></a>
       </div>

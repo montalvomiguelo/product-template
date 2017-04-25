@@ -16,6 +16,7 @@ var theme = (function($) {
   };
 
   var init = function() {
+    FastClick.attach(document.body);
     qtySelectors();
     productMenuSlideout();
   };
@@ -91,7 +92,7 @@ var theme = (function($) {
 
     // Selectors
     var $addToBag = $('#AddToBag'),
-        $productPrice = $('#ProductPrice'),
+        $productPrice = $('.js-product-price'),
         $addToBagText= $('#AddToBagText'),
         $currentVariantPrice = $('.js-current-variant-price');
 

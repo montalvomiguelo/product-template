@@ -8,7 +8,11 @@ var runSequence = require('run-sequence');
 var browserSync = require('browser-sync').create();
 
 gulp.task('scripts', function() {
-  return gulp.src(['node_modules/handlebars/dist/handlebars.js', 'theme/assets/js/theme.js'])
+  return gulp.src([
+      'node_modules/handlebars/dist/handlebars.js',
+      'node_modules/fastclick/lib/fastclick.js',
+      'theme/assets/js/theme.js'
+    ])
     .pipe($.newer('.build/assets/script.js.liquid'))
     .pipe($.concat('script.js'))
     .pipe($.rename({extname: '.js.liquid'}))

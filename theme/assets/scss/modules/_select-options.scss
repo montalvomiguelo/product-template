@@ -1,6 +1,10 @@
 .select-options {
   @extend %add-to-bag;
   width: 100%;
+
+  & + .product-menu-buttons {
+    display: none;
+  }
 }
 
 .select-options__price {

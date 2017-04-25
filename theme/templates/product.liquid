@@ -6,11 +6,6 @@
   {% assign current_variant = product.selected_or_first_available_variant %}
 
   {% comment %}
-    Variants size
-  {% endcomment %}
-  {% assign variant_count = product.variants | size %}
-
-  {% comment %}
     Check if the product is on sale and set a variable to be used below.
   {% endcomment %}
   {% assign on_sale = false %}
@@ -64,13 +59,13 @@
 
 <div class="product-menu-container">
   <form class="product-menu-form" method="post" action="/cart">
-    <div class="product-menu-slideout">
+    <div id="ProductMenuSlideout" class="product-menu-slideout">
       <div class="product-menu-slideout__header">
         <h6>
           {{ product.title }}
           <small class="js-current-variant-price">{{ current_variant.price | money }}</small>
         </h6>
-        <a class="icon-x" href="#"></a>
+        <a class="icon-x js-product-menu-slideout-close" href="#"></a>
       </div>
       <div class="product-menu-slideout__content">
         {% comment %}
@@ -105,14 +100,17 @@
     <div class="product-menu">
       {% include 'breadcrumb' %}
 
-      {% if variant_count > 1 %}
-        <a href="#" class="button select-options">
+      {% comment %}
+        Add button 'select-options' if one or more option and it isn't 'Title'. Could be 'Size'.
+      {% endcomment  %}
+      {% if product.options.size >= 1 and product.options.first != 'Title' %}
+        <a href="#" class="button select-options js-product-menu-slideout-open">
           <span class="select-options__text">{{ 'products.product.select_options' | t }}</span>
           <span class="select-options__price js-current-variant-price">{{ current_variant.price | money }}</span>
         </a>
       {% endif %}
 
-      <div class="product-menu-buttons">
+      <div id="ProductMenuButtons" class="product-menu-buttons">
         <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
         <button class="button add-to-bag" id="AddToBag" name="add" type="submit" title="{{ 'products.product.add_to_bag' | t }}">
           <span id="AddToBagText" class="add-to-bag__text">{{ 'products.product.add_to_bag' | t }}</span>

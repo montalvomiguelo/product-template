@@ -8,11 +8,16 @@ var theme = (function($) {
 
     // Product
     $numInputs: $('input[type="number"]'),
+    $openProductMenuSlideout: $('.js-product-menu-slideout-open'),
+    $cloeseProductMenuSlideout: $('.js-product-menu-slideout-close'),
+    $productMenuSlideout: $('#ProductMenuSlideout'),
+    $productMenuButtons: $('#ProductMenuButtons'),
 
   };
 
   var init = function() {
     qtySelectors();
+    productMenuSlideout();
   };
 
   var qtySelectors = function() {
@@ -121,6 +126,22 @@ var theme = (function($) {
       $addToBag.addClass('disabled').prop('disabled', true);
     }
 
+  };
+
+  var productMenuSlideout = function() {
+    cache.$openProductMenuSlideout.click(function(evt) {
+      evt.preventDefault();
+      $(this).hide();
+      cache.$productMenuSlideout.addClass('is-open');
+      cache.$productMenuButtons.show();
+    });
+
+    cache.$cloeseProductMenuSlideout.click(function(evt) {
+      evt.preventDefault();
+      cache.$productMenuSlideout.removeClass('is-open');
+      cache.$productMenuButtons.hide();
+      cache.$openProductMenuSlideout.show();
+    })
   };
 
   return {

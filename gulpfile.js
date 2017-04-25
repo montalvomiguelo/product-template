@@ -11,6 +11,7 @@ gulp.task('scripts', function() {
   return gulp.src([
       'node_modules/handlebars/dist/handlebars.js',
       'node_modules/fastclick/lib/fastclick.js',
+      'theme/assets/js/variant_selection.js',
       'theme/assets/js/theme.js'
     ])
     .pipe($.newer('.build/assets/script.js.liquid'))

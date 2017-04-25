@@ -2,13 +2,17 @@
   @include clearfix();
   text-align: right;
 
-  .js-qty {
-    float: left;
-    width: 50%;
+  > #Quantity {
+    @extend %product-menu-buttons__element;
+    height: 50px;
   }
 
   .button {
-    width: 50%;
+    @extend %product-menu-buttons__element;
+  }
+
+  .js-qty {
+    @extend %product-menu-buttons__element;
   }
 
 }

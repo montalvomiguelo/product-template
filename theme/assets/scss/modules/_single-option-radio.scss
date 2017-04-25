@@ -1,0 +1,49 @@
+.single-option-radio {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  input {
+    @include visuallyHidden;
+  }
+
+  label {
+    background-color: rgba($secondary-color, 0.2);
+    border: 1px solid transparent;
+    color: $primary-color;
+    display: inline-block;
+    margin: 0 10px 5px 0;
+    padding: 10px;
+    position: relative;
+    text-transform: uppercase;
+
+    &:active,
+    &:focus {
+      background-color: $background-color;
+      border-color: $primary-color;;
+    }
+
+    &.disabled:before {
+      @include prefixer(transform, rotate(45deg), ms webkit spec);
+      border-color: $secondary-color;
+      border-left: 1px solid;
+      bottom: 0;
+      content: "";
+      left: 50%;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  // style selected radio button's label
+  input[type='radio']:checked + label {
+    border-color: $primary-color;
+    background-color: $background-color;
+  }
+
+  // style lable on input focus
+  input[type='radio']:focus + label {
+    background-color: $background-color;
+  }
+}

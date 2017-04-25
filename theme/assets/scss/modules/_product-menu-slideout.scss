@@ -6,16 +6,6 @@
 
 .product-menu-slideout__content {
   @extend %product-menu-slideout__content;
-
-  .selector-wrapper {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding-right: 10px;
-
-    label {
-      display: block;
-    }
-  }
 }
 
 .product-menu-slideout__header {

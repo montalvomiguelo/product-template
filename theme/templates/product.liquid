@@ -97,7 +97,7 @@
               <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
             {% else %}
               <option disabled="disabled">
-              {{ variant.title }} - Sold Out
+                {{ variant.title }} - {{ 'products.product.sold_out' | t }}
               </option>
             {% endif %}
           {% endfor %}
@@ -167,9 +167,10 @@
 
     // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
     {% if product.options.size == 1 and product.options.first != 'Title' %}
-      $('.selector-wrapper:eq(0)').prepend('<label for="productSelect-option-0">{{ product.options.first | escape }}</label>');
+      $('.radio-wrapper:eq(0)').prepend('<label for="ProductSelect-option-0" class="single-option-radio__label">{{ product.options.first | escape }}</label>');
     {% endif %}
-    // Hide selectors if we only have 1 variant and its title contains 'Default'.
+
+    // Hide drop-down selectors if we only have 1 variant and its title contains 'Default'.
     {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
       $('.selector-wrapper').hide();
     {% endif %}

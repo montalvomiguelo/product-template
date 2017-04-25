@@ -1,0 +1,13 @@
+.radio-wrapper {
+  margin-bottom: 20px;
+
+  .single-option-radio__label {
+    cursor: default;
+    color: $primary-color;
+    font-size: 100%;
+    display: block;
+    font-style: normal;
+    margin-bottom: 10px;
+    text-transform: none;
+  }
+}

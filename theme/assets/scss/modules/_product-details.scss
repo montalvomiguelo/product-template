@@ -1,4 +1,5 @@
 .product-details {
+  @extend %product-details;
   @extend %product-heading;
   clear: left;
 }

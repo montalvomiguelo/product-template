@@ -10,6 +10,16 @@
   text-transform: uppercase;
 }
 
+%product-details {
+  padding-left: 7%;
+  padding-right: 7%;
+
+  @include at-query($min, $post-break-small) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 %product-heading {
   @include at-query($min, $post-break-small) {
     float: left;

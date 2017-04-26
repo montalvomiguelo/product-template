@@ -18,12 +18,6 @@
     position: relative;
     text-transform: uppercase;
 
-    &:active,
-    &:focus {
-      background-color: $background-color;
-      border-color: $primary-color;;
-    }
-
     &.disabled:before {
       @include prefixer(transform, rotate(45deg), ms webkit spec);
       border-color: $secondary-color;

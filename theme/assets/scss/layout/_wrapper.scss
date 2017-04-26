@@ -3,4 +3,11 @@
   margin: 0 auto;
   padding: 0 7%;
   position: relative;
+
+  .template-product & {
+    @include at-query($max, $break-small) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }

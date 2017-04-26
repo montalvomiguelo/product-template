@@ -1,10 +1,12 @@
 .product-images {
   margin-bottom: 35px;
+  padding-left: 7%;
 
   @include at-query($min, $post-break-small) {
     float: right;
     margin-bottom: 0;
     max-width: 48%;
+    padding-left: 0;
   }
 
   @include at-query($min, $post-break-medium) {
@@ -23,6 +25,12 @@
   .product-image {
     display: block;
     margin-bottom: 2px;
-    width: 100%;
+    margin-right: 1rem;
+    width: 90%;
+
+    @include at-query($min, $post-break-small) {
+      margin-right: 0;
+      width: 100%;
+    }
   }
 }

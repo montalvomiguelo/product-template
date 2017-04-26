@@ -2,7 +2,17 @@
   @include clearfix();
   position: relative;
 
+  @include at-query($min, $post-break-medium) {
+    padding: 25px 7%;
+  }
+
   .breadcrumb {
     display: none;
+
+    @include at-query($min, $post-break-medium) {
+      @include vertical-align(absolute);
+      display: block;
+      float: left;
+    }
   }
 }

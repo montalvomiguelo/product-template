@@ -2,6 +2,13 @@
   @extend %add-to-bag;
   width: 100%;
 
+  @include at-query($min, $post-break-medium) {
+    float: right;
+    margin-left: 30px;
+    min-width: 240px;
+    width: auto;
+  }
+
   & + .product-menu-buttons {
     display: none;
   }

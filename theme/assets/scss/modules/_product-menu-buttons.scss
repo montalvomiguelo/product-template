@@ -2,17 +2,36 @@
   @include clearfix();
   text-align: right;
 
+  @include at-query($min, $post-break-medium) {
+    float: right;
+  }
+
   > #Quantity {
     @extend %product-menu-buttons__element;
     height: 50px;
+
+    @include at-query($min, $post-break-medium) {
+      width: 170px;
+      margin-left: 30px;
+    }
   }
 
   .button {
     @extend %product-menu-buttons__element;
+
+    @include at-query($min, $post-break-medium) {
+      width: auto;
+      min-width: 240px;
+    }
   }
 
   .js-qty {
     @extend %product-menu-buttons__element;
+
+    @include at-query($min, $post-break-medium) {
+      margin-left: 30px;
+      width: 170px;
+    }
   }
 
 }

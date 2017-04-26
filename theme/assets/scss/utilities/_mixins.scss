@@ -79,3 +79,9 @@
   height: 1px;
   width: 1px;
 }
+
+@mixin vertical-align($position: relative) {
+  @include prefixer(transform, translateY(-50%), webkit ms spec);
+  position: $position;
+  top: 50%;
+}

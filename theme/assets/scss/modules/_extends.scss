@@ -10,29 +10,6 @@
   text-transform: uppercase;
 }
 
-%product-details {
-  padding-left: 7%;
-  padding-right: 7%;
-
-  @include at-query($min, $post-break-small) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-%product-heading {
-  @include at-query($min, $post-break-small) {
-    float: left;
-    max-width: 600px;
-    padding-right: 40px;
-    width: 40%;
-  }
-
-  @include at-query($min, $post-break-medium) {
-    padding-right: 60px;
-  }
-}
-
 %product-menu-slideout__content {
   padding: 5px 7%;
 }

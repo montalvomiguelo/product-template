@@ -1,6 +1,4 @@
 .product-heading {
-  @extend %product-details;
-  @extend %product-heading;
 
   .product-subtitle {
     color: $secondary-color;
@@ -9,7 +7,7 @@
     margin-bottom: 20px;
 
     @include at-query($min, $post-break-small) {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
 
     @include at-query($min, $post-break-medium) {

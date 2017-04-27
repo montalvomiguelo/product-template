@@ -39,14 +39,18 @@
   {% comment %}
     Display current variant image, or default first
   {% endcomment %}
-  <img class="fade-in product-image" src="{{ featured_image | img_url: '1024x1024' }}" alt="{{ featured_image.alt | escape }}">
+  <figure class="fade-in product-image">
+    <img src="{{ featured_image | img_url: '1024x1024' }}" alt="{{ featured_image.alt | escape }}" data-image-id="{{ featured_image.id }}">
+  </figure>
 
   {% comment %}
     Display rest of product images, not repeating the featured one
   {% endcomment %}
   {% for image in product.images %}
     {% unless image contains featured_image %}
-    <img class="fade-in product-image" src="{{ image.src | img_url: '1024x1024' }}" alt="{{ image.alt | escape }}">
+    <figure class="fade-in product-image">
+      <img src="{{ image.src | img_url: '1024x1024' }}" alt="{{ image.alt | escape }}" data-image-id="{{ image.id }}">
+    </figure>
     {% endunless %}
   {% endfor %}
 </div>

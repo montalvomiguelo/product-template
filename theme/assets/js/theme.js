@@ -105,7 +105,16 @@ var theme = (function($) {
         $currentVariantPrice = $('.js-current-variant-price');
 
     if (variant) {
+
       // Swap image.
+      if (variant.featured_image) {
+
+        var featuredImageId = variant.featured_image.id,
+            newImage = $('img[data-image-id="' + featuredImageId + '"]'),
+            imageIndex = $(newImage).parent().index();
+
+        showVariantImage(featuredImageId, newImage, imageIndex);
+      }
 
       // Selected a valid variant that is available.
       if (variant.available) {
@@ -137,6 +146,39 @@ var theme = (function($) {
 
   };
 
+  var scrolledBelowProductImages = function() {
+    return (cache.$window.scrollTop() > cache.$productImages.offset().top);
+  };
+
+  var featuredImageEqualToFirstProductImages = function(featuredImageId) {
+    var $firstProductImage = $(cache.$productImages.find('[data-image-id]')[0]);
+
+    return ($firstProductImage.data('image-id') == featuredImageId);
+  };
+
+  var isPostBreakSmall = function() {
+    return (cache.$window.width() > variables.mediaQuerySmall);
+  };
+
+  var showVariantImage = function(featuredImageId, newImage, imageIndex) {
+
+    if (isPostBreakSmall()) {
+
+      if (scrolledBelowProductImages() || !featuredImageEqualToFirstProductImages(featuredImageId)) {
+        $('html, body').animate({
+          scrollTop: $(newImage).offset().top
+        }, 300);
+      }
+
+      return;
+    }
+
+    if (cache.$productImages.hasClass('flickity-enabled')) {
+      cache.$productImages.flickity('select', imageIndex);
+    }
+
+  };
+
   var productMenuSlideout = function() {
     cache.$openProductMenuSlideout.click(function(evt) {
       evt.preventDefault();
@@ -158,7 +200,7 @@ var theme = (function($) {
       return;
     }
 
-    if (cache.$window.width() > variables.mediaQuerySmall) {
+    if (isPostBreakSmall()) {
 
       if (cache.$productImages.hasClass('flickity-enabled')) {
         cache.$productImages.flickity('destroy');

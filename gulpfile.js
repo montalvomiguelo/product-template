@@ -12,6 +12,7 @@ gulp.task('scripts', function() {
       'node_modules/handlebars/dist/handlebars.js',
       'node_modules/fastclick/lib/fastclick.js',
       'node_modules/flickity/dist/flickity.pkgd.js',
+      'node_modules/sticky-kit/dist/sticky-kit.js',
       'theme/assets/js/variant_selection.js',
       'theme/assets/js/theme.js'
     ])

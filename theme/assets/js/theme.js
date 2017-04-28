@@ -19,6 +19,7 @@ var theme = (function($) {
     $productMenuButtons: $('#ProductMenuButtons'),
     $productImages: $('#ProductImages'),
     $productDetails: $('.product-details'),
+    $relatedProducts: $('.related-products'),
 
   };
 
@@ -27,6 +28,7 @@ var theme = (function($) {
     qtySelectors();
     productMenuSlideout();
     productImages();
+    relatedProductsSlider();
     onResize();
     stickyProductDetails();
   };
@@ -241,7 +243,7 @@ var theme = (function($) {
   var stickyProductDetails = function() {
     if (isPostBreakSmall() && !cache.$productDetails.hasClass('is_stuck')) {
       cache.$productDetails.stick_in_parent({
-        offset_top: 50
+        offset_top: 40
       });
 
       return;
@@ -250,6 +252,21 @@ var theme = (function($) {
     if (cache.$productDetails.hasClass('is_stuck')) {
       cache.$productDetails.trigger('sticky_kit:detach');
     }
+  };
+
+  var relatedProductsSlider = function() {
+    if (!cache.$relatedProducts.length) {
+      return;
+    }
+
+    cache.$relatedProducts.flickity({
+      cellSelector: '.product',
+      contain: true,
+      prevNextButtons: false,
+      pageDots: false,
+      selectedAttraction: .02,
+      imagesLoaded: true
+    });
   };
 
   return {

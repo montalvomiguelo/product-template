@@ -6,6 +6,9 @@
     }
   },
   "products": {
+    "general": {
+      "related_products_title": "More from this collection"
+    },
     "product": {
       "sold_out": "Sold Out",
       "on_sale": "On Sale",

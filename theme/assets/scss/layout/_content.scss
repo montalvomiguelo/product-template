@@ -5,7 +5,4 @@
     padding-top: 40px;
   }
 
-  @include at-query($min, $post-break-medium) {
-    padding-top: 40px;
-  }
 }

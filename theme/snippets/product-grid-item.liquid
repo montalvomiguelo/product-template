@@ -1,0 +1,68 @@
+<!-- /snippets/product-grid-item.liquid -->
+{% comment %}
+
+  This snippet is used to showcase each product during the loop,
+  'for product in collection.products' in collection.liquid.
+
+  A liquid variable (grid_item_width) is set just before the this
+  snippet is included to change the size of the container.
+  Once the variable is set on a page, all future instances of this
+  snippet will use that width. Overwrite the variable to adjust this.
+
+  Example
+    - assign grid_item_width = 'large--one-quarter medium--one-half'
+
+{% endcomment %}
+
+{% comment %}
+  Set the default grid_item_width if no variable is set
+{% endcomment %}
+{% unless grid_item_width %}
+  {% assign grid_item_width = 'large--one-third medium--one-half' %}
+{% endunless %}
+
+{% comment %}
+  Check if the product is on sale and set a variable to be used below.
+{% endcomment %}
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+{% comment %}
+  Check if the product is sold out and set a variable to be used below.
+{% endcomment %}
+{% assign sold_out = true %}
+{% if product.available %}
+  {% assign sold_out = false %}
+{% endif %}
+
+<div class="fade-in product grid__item {{ grid_item_width }}{% if sold_out %} is-sold-out{% endif %}">
+  {% comment %}
+    Link to your product with the 'within: collection' filter for the link to be aware of the collection.
+    This allows you to create collection-based navigation on the product page.
+
+    Results of using 'within: collection':
+    - Instead of a URL with /products/product-handle
+      you would get /collections/collection-handle/products/product-handle
+
+    For more info on navigation within a collection
+      - http://docs.shopify.com/support/your-store/collections/how-to-navigate-within-a-collection
+
+  {% endcomment %}
+
+  <a class="product-link" href="{{ product.url | within: collection }}">
+    <img class="product-image" alt="{{ product.featured_image.alt | escape }}" src="{{ product.featured_image.src | img_url: 'grande' }}">
+    <div class="product-info">
+      <div class="product-name">{{ product.title }}</div>
+      <div class="product-price-status">
+        <span class="product-price">{{ product.price | money }}</span>
+        {% if sold_out %}
+          <span class="product-status"> - {{ 'products.product.sold_out' | t }}</span>
+        {% elsif on_sale %}
+          <span class="product-status"> - {{ 'products.product.on_sale' | t }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</div>

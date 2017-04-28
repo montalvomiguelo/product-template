@@ -1,0 +1,18 @@
+.related-products {
+  padding-left: 7%;
+
+  @include at-query($max, $break-large) {
+    margin-left: -15px;
+  }
+
+  @include at-query($min, $post-break-small) {
+    padding-left: 0;
+  }
+
+  .product {
+    @include at-query($max, $break-large) {
+      padding-left: 15px;
+      width: 36%;
+    }
+  }
+}

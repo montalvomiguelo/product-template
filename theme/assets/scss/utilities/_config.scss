@@ -38,3 +38,17 @@ $post-break-extra-large: $break-extra-large + $viewport-increment;
 
 $min: min-width;
 $max: max-width;
+
+$gridGutter: 30px;
+
+/*================ The following are dependencies of csswizardry grid ================*/
+$breakpoints: (
+  'small' '(max-width: #{$break-small})',
+  'medium' '(min-width: #{$post-break-small}) and (max-width: #{$break-medium})',
+  'medium-down' '(max-width: #{$break-medium})',
+  'large' '(min-width: #{$post-break-medium}) and (max-width: #{$break-large})',
+  'xlarge' '(min-width: #{$post-break-large})'
+);
+$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large', 'xlarge');
+$breakpoint-has-push:  ('medium', 'medium-down', 'large', 'xlarge');
+$breakpoint-has-pull:  ('medium', 'medium-down', 'large', 'xlarge');

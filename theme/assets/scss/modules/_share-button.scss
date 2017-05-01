@@ -1,0 +1,51 @@
+.share-button {
+  background: rgba($secondary-color, 0.2);
+  float: left;
+  line-height: 2.5;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  width: 50px;
+
+  .product-menu--has-share & {
+    @include at-query($min, $post-break-medium) {
+      position: absolute;
+      right: calc(7% + 440px);
+    }
+  }
+
+  .product-menu--has-options & {
+    @include at-query($min, $post-break-medium) {
+      position: absolute;
+      right: calc(7% + 270px);
+    }
+  }
+
+
+  @include at-query($min, $post-break-extra-large) {
+    padding-left: 40px;
+    padding-right: 40px;
+    width: auto;
+  }
+
+}
+
+.share-button__text {
+  display: none;
+  color: $primary-color;
+  text-transform: uppercase;
+  font-size: 12px;
+
+  @include at-query($min, $post-break-extra-large) {
+    display: block;
+  }
+}
+
+.share-button__icon {
+  font-size: 18px;
+  color: $primary-color;
+
+  @include at-query($min, $post-break-extra-large) {
+    display: none;
+  }
+}

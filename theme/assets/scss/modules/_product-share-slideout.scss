@@ -1,22 +1,16 @@
-.product-menu-slideout {
+.product-share-slideout {
   @extend %product-menu-slideout;
 }
 
-.product-menu-slideout__content {
+.product-share-slideout__content {
   @extend %product-menu-slideout__content;
 }
 
-.product-menu-slideout__header {
+.product-share-slideout__header {
   @extend %product-menu-slideout__header;
 
   h6 {
     @extend %product-menu-slideout-header__title;
-
-    small {
-      color: $secondary-color;
-      display: block;
-      font-size: inherit;
-    }
   }
 
   a {

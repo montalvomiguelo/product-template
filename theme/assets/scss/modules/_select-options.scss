@@ -9,9 +9,13 @@
     width: auto;
   }
 
-  & + .product-menu-buttons {
-    display: none;
+  .product-menu--has-share & {
+    @include at-query($max, $break-medium) {
+      margin-left: 50px;
+      width: calc(100% - 50px);
+    }
   }
+
 }
 
 .select-options__price {

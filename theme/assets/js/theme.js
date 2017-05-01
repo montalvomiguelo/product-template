@@ -15,11 +15,16 @@ var theme = (function($) {
     $numInputs: $('input[type="number"]'),
     $openProductMenuSlideout: $('.js-product-menu-slideout-open'),
     $cloeseProductMenuSlideout: $('.js-product-menu-slideout-close'),
+    $closeProductShareSlideout: $('.js-product-share-slideout-close'),
+    $closeShare: $('#CloseShare'),
+    $openProductShareSlideout: $('.js-product-share-slideout-open'),
+    $productShareSlideout: $('#ProductShareSlideout'),
     $productMenuSlideout: $('#ProductMenuSlideout'),
     $productMenuButtons: $('#ProductMenuButtons'),
     $productImages: $('#ProductImages'),
     $productDetails: $('.product-details'),
     $relatedProducts: $('.related-products'),
+    $shareButton: $('.share-button'),
 
   };
 
@@ -27,6 +32,7 @@ var theme = (function($) {
     FastClick.attach(document.body);
     qtySelectors();
     productMenuSlideout();
+    productShareSlideout();
     productImages();
     relatedProductsSlider();
     onResize();
@@ -189,6 +195,7 @@ var theme = (function($) {
       $(this).hide();
       cache.$productMenuSlideout.addClass('is-open');
       cache.$productMenuButtons.show();
+      cache.$shareButton.hide();
     });
 
     cache.$cloeseProductMenuSlideout.click(function(evt) {
@@ -196,7 +203,26 @@ var theme = (function($) {
       cache.$productMenuSlideout.removeClass('is-open');
       cache.$productMenuButtons.hide();
       cache.$openProductMenuSlideout.show();
+      cache.$shareButton.show();
     })
+  };
+
+  var productShareSlideout = function() {
+    cache.$openProductShareSlideout.click(function(evt) {
+      evt.preventDefault();
+      $(this).hide();
+      cache.$openProductMenuSlideout.hide();
+      cache.$closeShare.addClass('is-active');
+      cache.$productShareSlideout.addClass('is-open');
+    });
+
+    cache.$closeProductShareSlideout.click(function(evt) {
+      evt.preventDefault();
+      cache.$productShareSlideout.removeClass('is-open');
+      cache.$closeShare.removeClass('is-active');
+      cache.$openProductMenuSlideout.show();
+      cache.$openProductShareSlideout.show();
+    });
   };
 
   var productImages = function() {

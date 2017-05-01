@@ -1,0 +1,10 @@
+.close-share.is-active {
+  display: block;
+
+  @include at-query($min, $post-break-medium) {
+    float: right;
+    margin-left: 30px;
+    min-width: 240px;
+    width: auto;
+  }
+}

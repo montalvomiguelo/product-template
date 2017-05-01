@@ -6,6 +6,18 @@
     float: right;
   }
 
+  .product-menu--has-options & {
+    display: none;
+  }
+
+  .product-menu--has-share & {
+    @include at-query($max, $break-medium) {
+      margin-left: 50px;
+      width: calc(100% - 50px);
+    }
+  }
+
+
   > #Quantity {
     @extend %product-menu-buttons__element;
     height: 50px;

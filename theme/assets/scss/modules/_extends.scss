@@ -19,6 +19,43 @@
   width: 50%;
 }
 
+%product-menu-slideout {
+  @include prefixer(transition, max-height .3s linear, ms webkit moz spec);
+  max-height: 0;
+  overflow-y: hidden;
+
+  @include at-query($min, $post-break-medium) {
+    box-shadow: inset 0 -1px 1px rgba($secondary-color, 0.2);
+  }
+}
+
+%product-menu-slideout__header {
+  @extend %product-menu-slideout__content;
+  @extend %table;
+  border-bottom: 1px solid rgba($secondary-color, 0.2);
+  font-size: 14px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+%product-menu-slideout-header__close {
+  @extend %table-cell;
+  height: 50px;
+  line-height: 50px;
+  text-align: right;
+  width: 50px;
+
+  &:hover {
+    opacity: .6;
+  }
+}
+
+%product-menu-slideout-header__title {
+  @extend %table-cell;
+  font-size: inherit;
+  line-height: normal;
+}
+
 %table {
   display: table;
   table-layout: fixed;

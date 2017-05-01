@@ -3,6 +3,10 @@
     "breadcrumbs": {
       "home": "Home",
       "home_link_title": "Back to the home page"
+    },
+    "social": {
+      "share": "Share",
+      "close": "Close"
     }
   },
   "products": {

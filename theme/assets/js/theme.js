@@ -121,7 +121,8 @@ var theme = (function($) {
 
         var featuredImageId = variant.featured_image.id,
             newImage = $('img[data-image-id="' + featuredImageId + '"]'),
-            imageIndex = $(newImage).parent().index();
+            imageIndex = $(newImage).parent().index(),
+            disabledClass = 'disabled';
 
         showVariantImage(featuredImageId, newImage, imageIndex);
       }
@@ -130,13 +131,13 @@ var theme = (function($) {
       if (variant.available) {
 
         // Enabling add to cart button.
-        $addToBag.removeClass('disabled').prop('disabled', false);
+        $addToBag.removeClass(disabledClass).prop('disabled', false);
         $addToBagText.html(translations.addToBag);
 
       } else {
         // Variant is sold out.
         $addToBagText.html(translations.soldOut);
-        $addToBag.addClass('disabled').prop('disabled', true);
+        $addToBag.addClass(disabledClass).prop('disabled', true);
       }
 
       // Whether the variant is in stock or not, we can update the price and compare at price.
@@ -151,7 +152,7 @@ var theme = (function($) {
     } else {
       // variant doesn't exist.
       $addToBagText.html(translations.unavailable);
-      $addToBag.addClass('disabled').prop('disabled', true);
+      $addToBag.addClass(disabledClass).prop('disabled', true);
     }
 
   };
@@ -190,17 +191,20 @@ var theme = (function($) {
   };
 
   var productMenuSlideout = function() {
+    var isOpenClass = 'is-open';
+
     cache.$openProductMenuSlideout.click(function(evt) {
       evt.preventDefault();
       $(this).hide();
-      cache.$productMenuSlideout.addClass('is-open');
+      cache.$productMenuSlideout.addClass(isOpenClass);
+      cache.$productMenuButtons.addClass('is-option-open');
       cache.$productMenuButtons.show();
       cache.$shareButton.hide();
     });
 
     cache.$cloeseProductMenuSlideout.click(function(evt) {
       evt.preventDefault();
-      cache.$productMenuSlideout.removeClass('is-open');
+      cache.$productMenuSlideout.removeClass(isOpenClass);
       cache.$productMenuButtons.hide();
       cache.$openProductMenuSlideout.show();
       cache.$shareButton.show();
@@ -208,20 +212,25 @@ var theme = (function($) {
   };
 
   var productShareSlideout = function() {
+    var isActiveClass = 'is-active',
+        isOpenClass = 'is-open';
+
     cache.$openProductShareSlideout.click(function(evt) {
       evt.preventDefault();
       $(this).hide();
       cache.$openProductMenuSlideout.hide();
-      cache.$closeShare.addClass('is-active');
-      cache.$productShareSlideout.addClass('is-open');
+      cache.$productMenuButtons.hide();
+      cache.$closeShare.addClass(isActiveClass);
+      cache.$productShareSlideout.addClass(isOpenClass);
     });
 
     cache.$closeProductShareSlideout.click(function(evt) {
       evt.preventDefault();
-      cache.$productShareSlideout.removeClass('is-open');
-      cache.$closeShare.removeClass('is-active');
+      cache.$productShareSlideout.removeClass(isOpenClass);
+      cache.$closeShare.removeClass(isActiveClass);
       cache.$openProductMenuSlideout.show();
       cache.$openProductShareSlideout.show();
+      cache.$productMenuButtons.removeAttr('style');
     });
   };
 

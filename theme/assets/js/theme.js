@@ -191,19 +191,22 @@ var theme = (function($) {
   };
 
   var productMenuSlideout = function() {
-    var isOpenClass = 'is-open';
+    var isOpenClass = 'is-open',
+        isOptionOpenClass = 'is-option-open';
 
     cache.$openProductMenuSlideout.click(function(evt) {
       evt.preventDefault();
+
       $(this).hide();
       cache.$productMenuSlideout.addClass(isOpenClass);
-      cache.$productMenuButtons.addClass('is-option-open');
+      cache.$productMenuButtons.addClass(isOptionOpenClass);
       cache.$productMenuButtons.show();
       cache.$shareButton.hide();
     });
 
     cache.$cloeseProductMenuSlideout.click(function(evt) {
       evt.preventDefault();
+
       cache.$productMenuSlideout.removeClass(isOpenClass);
       cache.$productMenuButtons.hide();
       cache.$openProductMenuSlideout.show();
@@ -213,24 +216,27 @@ var theme = (function($) {
 
   var productShareSlideout = function() {
     var isActiveClass = 'is-active',
-        isOpenClass = 'is-open';
+        isOpenClass = 'is-open',
+        isShareOpenClass = 'is-share-open';
 
     cache.$openProductShareSlideout.click(function(evt) {
       evt.preventDefault();
+
       $(this).hide();
       cache.$openProductMenuSlideout.hide();
-      cache.$productMenuButtons.hide();
+      cache.$productMenuButtons.addClass(isShareOpenClass);
       cache.$closeShare.addClass(isActiveClass);
       cache.$productShareSlideout.addClass(isOpenClass);
     });
 
     cache.$closeProductShareSlideout.click(function(evt) {
       evt.preventDefault();
+
       cache.$productShareSlideout.removeClass(isOpenClass);
       cache.$closeShare.removeClass(isActiveClass);
       cache.$openProductMenuSlideout.show();
       cache.$openProductShareSlideout.show();
-      cache.$productMenuButtons.removeAttr('style');
+      cache.$productMenuButtons.removeClass(isShareOpenClass);
     });
   };
 

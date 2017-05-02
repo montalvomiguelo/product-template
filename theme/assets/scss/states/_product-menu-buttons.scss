@@ -1,6 +1,12 @@
-.product-menu-buttons.is-option-open {
-  @include at-query($max, $break-medium) {
-    margin-left: 0;
-    width: 100%;
+.product-menu-buttons {
+  &.is-option-open {
+    @include at-query($max, $break-medium) {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+
+  &.is-share-open {
+    display: none;
   }
 }

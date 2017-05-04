@@ -1,0 +1,24 @@
+.checkout-button {
+  @extend %add-to-bag;
+  padding-bottom: 0;
+  padding-top: 0;
+  width: 50%;
+
+  @include at-query($min, $post-break-medium) {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+    margin-left: 30px;
+    min-width: 240px;
+    width: auto;
+  }
+}
+
+.checkout-button__text {
+  @extend %add-to-bag__text;
+}
+
+.checkout-button__subtotal {
+  @extend %add-to-bag__price;
+  font-size: 16px;
+}

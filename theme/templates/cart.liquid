@@ -1,0 +1,74 @@
+<!-- /templates/cart.liquid -->
+{% comment %}
+
+  For info on test orders:
+    - General http://docs.shopify.com/manual/your-store/orders/test-orders
+    - Shopify Payments - http://docs.shopify.com/manual/more/shopify-payments/testing-shopify-payments
+
+{% endcomment %}
+
+{% if cart.item_count > 0 %}
+  <h1 class="page-header cart-header">{{ 'cart.general.title' | t }}</h1>
+{% else %}
+  <h1 class="page-header cart-header">{{ 'cart.general.empty' | t }}</h1>
+{% endif %}
+
+{% if cart.item_count > 0 %}
+  <form method="post" action="/cart" id="cart-form" class="cart-form">
+    <ul class="cart-items">
+      {% for item in cart.items %}
+        {% comment %}
+        Determining the handle of the collection that was last seen for the 'continue shopping' link.
+        {% endcomment %}
+
+        {% assign collection_url = item.product.collections.last.url %}
+        {% if collection_url == '/collections/frontpage' or collection_url == blank %}
+          {% assign collection_url = '/collections/all' %}
+        {% endif %}
+
+        {% if forloop.first %}
+          {% assign continue_shopping_url = collection_url %}
+        {% endif %}
+
+        <li class="cart-item">
+          <a class="item-image" href="{{ item.url | within: collections.all }}">
+            <img src="{{ item | img_url: 'grande' }}" alt="{{ item.title | escape }}">
+          </a>
+          <div class="item-details">
+            <a class="item-product-link" href="{{ item.product.url }}">
+              {{ item.product.title }}
+              {% unless item.variant.title contains 'Default' %}
+                <small>{{ item.variant.title }}</small>
+              {% endunless %}
+              <span class="price">{{ item.price | money }}</span>
+            </a>
+            <input type="number" name="updates[]" id="updates_{{ item.key }}" data-id="{{ item.key }}" value="{{ item.quantity }}" min="0">
+          </div>
+          <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="item-remove">
+            <span class="icon-x"></span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+    <div class="cart-footer">
+      <textarea class="cart-footer__note" name="note" placeholder="{{ 'cart.general.note' | t }}">{{ cart.note }}</textarea>
+      <p class="cart-footer__subtotal">
+        <em>{{ 'cart.general.subtotal' | t }}</em>
+        <span>{{ cart.total_price | money }}</span>
+      </p>
+    </div>
+    <div class="cart-menu-container">
+      <div class="cart-menu">
+        <a class="button cart-menu__continue" href="{{ continue_shopping_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
+        <button class="button checkout-button" type="submit" name="checkout">
+          <span class="checkout-button__text">{{ 'cart.general.checkout' | t }}</span>
+          <span class="checkout-button__subtotal">{{ cart.total_price | money }}</span>
+        </button>
+      </div>
+    </div>
+  </form>
+{% else %}
+  <div class="cart-empty-message">
+    <p><a class="button start-shopping" href="/products">{{ 'cart.general.shop_link' | t }}</a></p>
+  </div>
+{% endif %}

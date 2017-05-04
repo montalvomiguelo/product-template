@@ -1,0 +1,37 @@
+.cart-footer {
+  @include clearfix();
+}
+
+.cart-footer__note {
+  font-size: 100%;
+  margin-bottom: 40px;
+  min-height: 150px;
+  width: 100%;
+
+  @include at-query($min, $post-break-small) {
+    width: 50%;
+    float: left;
+    margin-bottom: 0;
+  }
+}
+
+.cart-footer__subtotal {
+  @include clearfix();
+  text-transform: uppercase;
+  padding-left: 40px;
+
+  @include at-query($min, $post-break-small) {
+    float: left;
+    width: 50%;
+  }
+
+  em {
+    color: $secondary-color;
+    float: left;
+    font-style: normal;
+  }
+
+  span {
+    float: right;
+  }
+}

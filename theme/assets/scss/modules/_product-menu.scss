@@ -1,10 +1,5 @@
 .product-menu {
-  @include clearfix();
-  position: relative;
-
-  @include at-query($min, $post-break-medium) {
-    padding: 25px 7%;
-  }
+  @extend %product-menu;
 
   .breadcrumb {
     display: none;

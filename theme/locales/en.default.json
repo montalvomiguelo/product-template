@@ -21,5 +21,17 @@
       "add_to_bag": "Add to Bag",
       "select_options": "Select Options"
     }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Bag",
+      "empty": "Your bag is empty",
+      "shop_link": "Start shopping",
+      "checkout": "Check Out",
+      "note": "Special instructions for seller",
+      "continue_shopping": "Continue Shopping",
+      "remove": "Remove",
+      "subtotal": "Subtotal"
+    }
   }
 }

@@ -1,5 +1,5 @@
 .share-button {
-  background: rgba($secondary-color, 0.2);
+  background: $border-color;
   float: left;
   line-height: 2.5;
   padding-left: 0;
@@ -32,7 +32,7 @@
 
 .share-button__text {
   display: none;
-  color: $primary-color;
+  color: $text-color;
   text-transform: uppercase;
   font-size: 12px;
 
@@ -43,7 +43,7 @@
 
 .share-button__icon {
   font-size: 18px;
-  color: $primary-color;
+  color: $text-color;
 
   @include at-query($min, $post-break-extra-large) {
     display: none;

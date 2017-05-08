@@ -3,14 +3,14 @@
 }
 
 a {
-  color: $primary-color;
+  color: $text-color;
   text-decoration: none;
 }
 
 body {
   background-color: $background-color;
-  color: $primary-color;
-  font-family: $primary-font;
+  color: $text-color;
+  font-family: $secondary-font;
   font-size: 14px;
   line-height: 1;
   padding-top: $header-height-mobile;

@@ -55,6 +55,11 @@
             {{ current_variant.price | money }}
           {% endif %}
         </span>
+        {% comment %}
+          All themes by Shopify should support the Product Reviews app out of the box.
+          https://apps.shopify.com/product-reviews
+        {% endcomment %}
+        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
       </h2>
     </div>
 
@@ -156,6 +161,12 @@
   </div>
 
 </div>
+
+{% comment %}
+  All themes by Shopify should support the Product Reviews app out of the box.
+  https://apps.shopify.com/product-reviews
+{% endcomment %}
+<div id="shopify-product-reviews" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
 
 {% include 'related-products' %}
 

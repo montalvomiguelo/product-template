@@ -1,0 +1,12 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "color_body_bg": "#ffffff",
+      "color_body_text": "#121212",
+      "color_primary": "#15a926",
+      "color_secondary": "#a0a0a0",
+      "color_borders": "#e7e7e7"
+    }
+  }
+}

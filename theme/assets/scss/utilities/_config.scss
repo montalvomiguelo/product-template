@@ -1,13 +1,15 @@
 $primary-font: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $secondary-font: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-$background-color: #FFFFFF;
+$background-color: #{'{{ settings.color_body_bg }}'};
 
-$primary-color: #121212;
+$primary-color: #{'{{ settings.color_primary }}'};
 
-$secondary-color: #A0A0A0;
+$secondary-color: #{'{{ settings.color_secondary }}'};
 
-$border-color: #A0A0A0;
+$border-color: #{'{{ settings.color_borders }}'};
+
+$text-color: #{'{{ settings.color_body_text }}'};
 
 $welcome-background-color: #F9F9F9;
 

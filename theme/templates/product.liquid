@@ -132,15 +132,17 @@
         </div>
       </div>
 
-      <div id="ProductShareSlideout" class="product-share-slideout">
-        <div class="product-share-slideout__header">
-          <h6>{{ 'general.social.share' | t }}</h6>
-          <a class="icon-x js-product-share-slideout-close" href="#"></a>
+      {% if settings.social_sharing_products %}
+        <div id="ProductShareSlideout" class="product-share-slideout">
+          <div class="product-share-slideout__header">
+            <h6>{{ 'general.social.share' | t }}</h6>
+            <a class="icon-x js-product-share-slideout-close" href="#"></a>
+          </div>
+          <div class="product-share-slideout__content">
+            {% include 'social-sharing' %}
+          </div>
         </div>
-        <div class="product-share-slideout__content">
-          {% include 'social-sharing' %}
-        </div>
-      </div>
+      {% endif %}
 
       <div class="product-menu{% if settings.social_sharing_products %} product-menu--has-share{% endif %}{% if product.options.size >= 1 and product.options.first != 'Title' %} product-menu--has-options{% endif %}">
         {% include 'breadcrumb' %}

@@ -7,44 +7,28 @@
         "content": "General colors"
       },
       {
-        "type": "header",
-        "content": "General colors"
-      },
-      {
         "type": "color",
-        "id": "color_primary",
-        "label": "Primary",
-        "default": "#15a926",
-        "info": "Used for primary buttons"
-      },
-      {
-        "type": "color",
-        "id": "color_secondary",
-        "label": "Secondary",
-        "default": "#a0a0a0",
-        "info": "Used for secondary buttons"
-      },
-      {
-        "type": "color",
-        "id": "color_borders",
-        "label": "Borders",
-        "default": "#a0a0a0"
-      },
-      {
-        "type": "header",
-        "content": "Body"
-      },
-      {
-        "type": "color",
-        "id": "color_body_bg",
+        "id": "background_color",
         "label": "Background",
-        "default": "#ffffff"
+        "default": "#FFFFFF"
       },
       {
         "type": "color",
-        "id": "color_body_text",
-        "label": "Text",
+        "id": "primary_text_color",
+        "label": "Primary text",
         "default": "#121212"
+      },
+      {
+        "type": "color",
+        "id": "secondary_text_color",
+        "label": "Secondary text",
+        "default": "#A0A0A0"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Borders",
+        "default": "#e7e7e7"
       }
     ]
   },

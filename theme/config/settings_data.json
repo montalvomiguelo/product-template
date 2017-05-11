@@ -2,11 +2,10 @@
   "current": "Default",
   "presets": {
     "Default": {
-      "color_body_bg": "#ffffff",
-      "color_body_text": "#121212",
-      "color_primary": "#15a926",
-      "color_secondary": "#a0a0a0",
-      "color_borders": "#e7e7e7"
+      "background_color": "#ffffff",
+      "primary_text_color": "#121212",
+      "secondary_text_color": "#a0a0a0",
+      "border_color": "#e7e7e7"
     }
   }
 }

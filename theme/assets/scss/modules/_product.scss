@@ -17,7 +17,7 @@
   }
 
   @include element(link) {
-    color: $text-color;
+    color: $primary-color;
     display: block;
     width: 100%;
 
@@ -33,7 +33,7 @@
   }
 
   @include element(name) {
-    color: $text-color;
+    color: $primary-color;
     text-transform: uppercase;
     margin-bottom: 7px;
     font-size: 12px;

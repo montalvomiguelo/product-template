@@ -1,3 +1,14 @@
 .breadcrumb {
   color: $secondary-color;
+
+  .product-menu & {
+    display: none;
+
+    @include at-query($min, $post-break-medium) {
+      @include vertical-align(absolute);
+      display: block;
+      float: left;
+      max-width: 25%;
+    }
+  }
 }

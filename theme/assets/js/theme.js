@@ -2,7 +2,8 @@ var theme = (function($) {
   'use strict';
 
   var variables = {
-    mediaQuerySmall: 668
+    mediaQuerySmall: 668,
+    mediaQueryMedium: 800
   };
 
   var cache = {
@@ -171,6 +172,10 @@ var theme = (function($) {
     return (cache.$window.width() > variables.mediaQuerySmall);
   };
 
+  var isPostBreakMedium = function() {
+    return (cache.$window.width() > variables.mediaQueryMedium);
+  };
+
   var showVariantImage = function(featuredImageId, newImage, imageIndex) {
 
     if (isPostBreakSmall()) {
@@ -245,7 +250,7 @@ var theme = (function($) {
       return;
     }
 
-    if (isPostBreakSmall()) {
+    if (isPostBreakMedium()) {
 
       if (isProductImagesFlickity()) {
         cache.$productImages.flickity('destroy');
@@ -258,7 +263,7 @@ var theme = (function($) {
         accessibility: true,
         adaptiveHeight: true,
         cellAlign: 'left',
-        cellSelector: '.product-image',
+        cellSelector: '.product-images__item',
         friction: .8,
         imagesLoaded: true,
         pageDots: false,

@@ -1,14 +1,4 @@
 .product-menu {
   @extend %product-menu;
-
-  .breadcrumb {
-    display: none;
-
-    @include at-query($min, $post-break-medium) {
-      @include vertical-align(absolute);
-      display: block;
-      float: left;
-    }
-  }
 }
 

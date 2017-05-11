@@ -1,6 +1,8 @@
 $primary-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $secondary-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
+$header-font-weight: 500;
+
 $background-color: #{'{{ settings.background_color }}'};
 
 $primary-color: #{'{{ settings.primary_text_color }}'};

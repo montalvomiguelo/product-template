@@ -3,14 +3,13 @@
   padding-left: 7%;
 
   @include at-query($min, $post-break-small) {
-    float: right;
-    margin-bottom: 0;
-    max-width: 48%;
     padding-left: 0;
   }
 
   @include at-query($min, $post-break-medium) {
     max-width: 50%;
+    float: right;
+    margin-bottom: 0;
   }
 
   @include at-query($min, $post-break-large) {
@@ -34,7 +33,7 @@
       max-width: 100%
     }
 
-    @include at-query($min, $post-break-small) {
+    @include at-query($min, $post-break-medium) {
       margin-right: 0;
       width: 100%;
     }

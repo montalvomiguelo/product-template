@@ -3,14 +3,14 @@
   padding-right: 7%;
 
   @include at-query($min, $post-break-small) {
-    float: left;
-    max-width: 600px;
     padding-left: 0;
-    padding-right: 40px;
-    width: 40%;
   }
 
   @include at-query($min, $post-break-medium) {
+    float: left;
+    max-width: 600px;
+    padding-left: 0;
     padding-right: 60px;
+    width: 40%;
   }
 }

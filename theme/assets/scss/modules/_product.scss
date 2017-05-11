@@ -16,7 +16,7 @@
     padding-bottom: calc(5% + 80px);
   }
 
-  .product-link {
+  @include element(link) {
     color: $text-color;
     display: block;
     width: 100%;
@@ -26,20 +26,20 @@
     }
   }
 
-  .product-image {
+  @include element(image) {
     display: block;
     margin-bottom: 15px;
     width: 100%;
   }
 
-  .product-name {
+  @include element(name) {
     color: $text-color;
     text-transform: uppercase;
     margin-bottom: 7px;
     font-size: 12px;
   }
 
-  .product-price-status {
+  @include element(price-status) {
     color: $secondary-color;
     font-family: $secondary-font;
     font-size: 12px;

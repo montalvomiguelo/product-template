@@ -1,25 +1,25 @@
 .product-menu-slideout {
   @extend %product-menu-slideout;
-}
 
-.product-menu-slideout__content {
-  @extend %product-menu-slideout__content;
-}
-
-.product-menu-slideout__header {
-  @extend %product-menu-slideout__header;
-
-  h6 {
-    @extend %product-menu-slideout-header__title;
-
-    small {
-      color: $secondary-color;
-      display: block;
-      font-size: inherit;
-    }
+  @include element(content) {
+    @extend %product-menu-slideout__content;
   }
 
-  a {
-    @extend %product-menu-slideout-header__close;
+  @include element(header) {
+    @extend %product-menu-slideout__header;
+
+    h6 {
+      @extend %product-menu-slideout-header__title;
+
+      small {
+        color: $secondary-color;
+        display: block;
+        font-size: inherit;
+      }
+    }
+
+    a {
+      @extend %product-menu-slideout-header__close;
+    }
   }
 }

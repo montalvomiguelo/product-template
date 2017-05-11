@@ -1,0 +1,70 @@
+.cart-item {
+  @extend %table;
+  margin-bottom: 40px;
+
+  @include element(image) {
+    @extend %table-cell;
+    vertical-align: middle;
+    width: 35%;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  @include element(details) {
+    @extend %table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    vertical-align: middle;
+
+    @include at-query($min, $post-break-large) {
+      padding-left: 40px;
+    }
+
+    a {
+      text-transform: uppercase;
+
+      @include at-query($min, $post-break-medium) {
+        display: inline-block;
+        vertical-align: middle;
+        padding-right: 20px;
+        width: 50%;
+      }
+
+      span {
+        display: block;
+        font-size: 12px;
+        margin: 1em 0;
+      }
+
+      small {
+        display: block;
+        margin: 1em 0;
+        font-size: 12px;
+        text-transform: none;
+        color: $secondary-color;
+      }
+    }
+
+    .js-qty {
+      margin-top: 20px;
+      max-width: 200px;
+
+      @include at-query($min, $post-break-medium) {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0;
+      }
+    }
+  }
+
+  @include element(remove) {
+    @extend %table-cell;
+    vertical-align: middle;
+    width: 20px;
+    text-align: center;
+  }
+
+}

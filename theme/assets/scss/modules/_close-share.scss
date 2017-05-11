@@ -1,4 +1,5 @@
 .close-share {
+  @extend %secondary-button;
   display: none;
   font-size: 12px;
   line-height: 50px;

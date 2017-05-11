@@ -1,19 +1,19 @@
 .product-share-slideout {
   @extend %product-menu-slideout;
-}
 
-.product-share-slideout__content {
-  @extend %product-menu-slideout__content;
-}
-
-.product-share-slideout__header {
-  @extend %product-menu-slideout__header;
-
-  h6 {
-    @extend %product-menu-slideout-header__title;
+  @include element(content) {
+    @extend %product-menu-slideout__content;
   }
 
-  a {
-    @extend %product-menu-slideout-header__close;
+  @include element(header) {
+    @extend %product-menu-slideout__header;
+
+    h6 {
+      @extend %product-menu-slideout-header__title;
+    }
+
+    a {
+      @extend %product-menu-slideout-header__close;
+    }
   }
 }

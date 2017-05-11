@@ -22,7 +22,7 @@
     width: 60%;
   }
 
-  .product-image {
+  @include element(item) {
     display: block;
     margin: 0 15px 2px 0;
     width: 90%;

@@ -1,5 +1,5 @@
 .share-button {
-  background: $border-color;
+  @extend %secondary-button;
   float: left;
   line-height: 2.5;
   padding-left: 0;

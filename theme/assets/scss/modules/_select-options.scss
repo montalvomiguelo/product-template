@@ -1,4 +1,5 @@
 .select-options {
+  @extend %primary-button;
   @extend %add-to-bag;
   width: 100%;
 

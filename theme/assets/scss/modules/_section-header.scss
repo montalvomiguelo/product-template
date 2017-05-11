@@ -3,10 +3,11 @@
   padding-top: 40px;
   padding-bottom: 40px;
   margin-top: 80px;
-}
 
-.section-header__title {
-  font-size: 18px;
-  text-align: center;
-  text-transform: uppercase;
+  @include element(title) {
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
 }

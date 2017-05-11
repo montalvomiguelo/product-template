@@ -51,11 +51,11 @@
 
   {% endcomment %}
 
-  <a class="product-link" href="{{ product.url | within: collection }}">
-    <img class="product-image" alt="{{ product.featured_image.alt | escape }}" src="{{ product.featured_image.src | img_url: 'grande' }}">
+  <a class="product__link" href="{{ product.url | within: collection }}">
+    <img class="product__image" alt="{{ product.featured_image.alt | escape }}" src="{{ product.featured_image.src | img_url: 'grande' }}">
     <div class="product-info">
-      <div class="product-name">{{ product.title }}</div>
-      <div class="product-price-status">
+      <div class="product__name">{{ product.title }}</div>
+      <div class="product__price-status">
         <span class="product-price">{{ product.price | money }}</span>
         {% if sold_out %}
           <span class="product-status"> - {{ 'products.product.sold_out' | t }}</span>

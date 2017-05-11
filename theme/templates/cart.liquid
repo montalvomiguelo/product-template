@@ -7,11 +7,7 @@
 
 {% endcomment %}
 
-{% if cart.item_count > 0 %}
-  <h1 class="page-header cart-header">{{ 'cart.general.title' | t }}</h1>
-{% else %}
-  <h1 class="page-header cart-header">{{ 'cart.general.empty' | t }}</h1>
-{% endif %}
+<h1 class="page-header cart-header">{{ 'cart.general.title' | t }}</h1>
 
 {% if cart.item_count > 0 %}
   <form method="post" action="/cart" id="cart-form" class="cart-form">
@@ -31,11 +27,11 @@
         {% endif %}
 
         <li class="cart-item">
-          <a class="item-image" href="{{ item.url | within: collections.all }}">
+          <a class="cart-item__image" href="{{ item.url | within: collections.all }}">
             <img src="{{ item | img_url: 'grande' }}" alt="{{ item.title | escape }}">
           </a>
-          <div class="item-details">
-            <a class="item-product-link" href="{{ item.product.url }}">
+          <div class="cart-item__details">
+            <a href="{{ item.product.url }}">
               {{ item.product.title }}
               {% unless item.variant.title contains 'Default' %}
                 <small>{{ item.variant.title }}</small>
@@ -44,7 +40,7 @@
             </a>
             <input type="number" name="updates[]" id="updates_{{ item.key }}" data-id="{{ item.key }}" value="{{ item.quantity }}" min="0">
           </div>
-          <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="item-remove">
+          <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart-item__remove">
             <span class="icon-x"></span>
           </a>
         </li>
@@ -69,6 +65,6 @@
   </form>
 {% else %}
   <div class="cart-empty-message">
-    <p><a class="button start-shopping" href="/products">{{ 'cart.general.shop_link' | t }}</a></p>
+    <p>{{ 'cart.general.empty' | t }}</p>
   </div>
 {% endif %}

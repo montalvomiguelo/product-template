@@ -27,7 +27,7 @@
     {% comment %}
       Display current variant image, or default first
     {% endcomment %}
-    <figure class="fade-in product-image">
+    <figure class="product-images__item">
       <img src="{{ featured_image | img_url: '1024x1024' }}" alt="{{ featured_image.alt | escape }}" data-image-id="{{ featured_image.id }}">
     </figure>
 
@@ -36,7 +36,7 @@
     {% endcomment %}
     {% for image in product.images %}
       {% unless image contains featured_image %}
-      <figure class="fade-in product-image">
+      <figure class="product-images__item">
         <img src="{{ image.src | img_url: '1024x1024' }}" alt="{{ image.alt | escape }}" data-image-id="{{ image.id }}">
       </figure>
       {% endunless %}
@@ -45,9 +45,9 @@
 
   <div class="product-details">
     <div class="product-heading">
-      <h1 class="product-title">{{ product.title }}</h1>
-      <h2 class="product-subtitle">
-        <span class="product-price js-product-price">
+      <h1 class="product-heading__title">{{ product.title }}</h1>
+      <h2 class="product-heading__subtitle">
+        <span class="js-product-price">
           {% if on_sale %}
             {{ current_variant.price | money }}
             <s>{{ current_variant.compare_at_price | money }}</s>
@@ -69,7 +69,7 @@
   </div>
 
   <div class="product-menu-container">
-    <form class="product-menu-form" method="post" action="/cart/add" enctype="multipart/form-data">
+    <form method="post" action="/cart/add" enctype="multipart/form-data">
       <div id="ProductMenuSlideout" class="product-menu-slideout">
         <div class="product-menu-slideout__header">
           <h6>
@@ -130,11 +130,11 @@
         {% include 'breadcrumb' %}
 
         {% if settings.social_sharing_products %}
-          <a class="button share-button js-product-share-slideout-open" href="#">
+          <a class="share-button js-product-share-slideout-open" href="#">
             <span class="share-button__text">{{ 'general.social.share' | t }}</span>
             <span class="share-button__icon icon-share"></span>
           </a>
-          <a id="CloseShare" class="button close-share js-product-share-slideout-close" href="#">
+          <a id="CloseShare" class="close-share js-product-share-slideout-close" href="#">
             <span class="close-share__text">{{ 'general.social.close' | t }}</span>
           </a>
         {% endif %}
@@ -143,7 +143,7 @@
           Add button 'select-options' if one or more option and it isn't 'Title'. Could be 'Size'.
         {% endcomment  %}
         {% if product.options.size >= 1 and product.options.first != 'Title' %}
-          <a href="#" class="button select-options js-product-menu-slideout-open">
+          <a href="#" class="select-options js-product-menu-slideout-open">
             <span class="select-options__text">{{ 'products.product.select_options' | t }}</span>
             <span class="select-options__price js-current-variant-price">{{ current_variant.price | money }}</span>
           </a>
@@ -151,7 +151,7 @@
 
         <div id="ProductMenuButtons" class="product-menu-buttons">
           <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
-          <button class="button add-to-bag" id="AddToBag" name="add" type="submit" title="{{ 'products.product.add_to_bag' | t }}">
+          <button class="add-to-bag" id="AddToBag" name="add" type="submit" title="{{ 'products.product.add_to_bag' | t }}">
             <span id="AddToBagText" class="add-to-bag__text">{{ 'products.product.add_to_bag' | t }}</span>
             <span class="add-to-bag__current-variant-price js-current-variant-price">{{ current_variant.price | money }}</span>
           </button>

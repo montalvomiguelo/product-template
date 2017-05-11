@@ -1,4 +1,5 @@
 .add-to-bag {
+  @extend %primary-button;
   @extend %add-to-bag;
 }
 

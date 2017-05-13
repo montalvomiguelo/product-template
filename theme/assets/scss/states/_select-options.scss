@@ -1,0 +1,9 @@
+.select-options {
+  .is-product-menu-slideout-open & {
+    display: none;
+  }
+
+  .is-product-share-slideout-open & {
+    display: none;
+  }
+}

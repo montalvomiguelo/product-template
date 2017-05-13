@@ -1,4 +1,5 @@
 .checkout-button {
+  @extend %primary-button;
   @extend %add-to-bag;
   padding-bottom: 0;
   padding-top: 0;

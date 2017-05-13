@@ -21,11 +21,18 @@ var theme = (function($) {
     $openProductShareSlideout: $('.js-product-share-slideout-open'),
     $productShareSlideout: $('#ProductShareSlideout'),
     $productMenuSlideout: $('#ProductMenuSlideout'),
-    $productMenuButtons: $('#ProductMenuButtons'),
     $productImages: $('#ProductImages'),
+    $productActions: $('#ProductActions'),
     $productDetails: $('.product-details'),
     $relatedProducts: $('.related-products'),
     $shareButton: $('.share-button'),
+    $addToBag: $('#AddToBag'),
+    $formContainer: $('#AddToBagForm'),
+
+    // Notification
+    $errorEl: $('.notification'),
+    $errorTextEl: $('.notification__inner'),
+    $closeNotification: $('.js-notification-slideout-close'),
 
   };
 
@@ -38,6 +45,7 @@ var theme = (function($) {
     relatedProductsSlider();
     onResize();
     stickyProductDetails();
+    formOverride();
   };
 
   var qtySelectors = function() {
@@ -195,53 +203,48 @@ var theme = (function($) {
 
   };
 
-  var productMenuSlideout = function() {
-    var isOpenClass = 'is-open',
-        isOptionOpenClass = 'is-option-open';
+  var isProductMenuSlideoutOpen = function() {
+    return cache.$productMenuSlideout.hasClass('is-open');
+  };
 
+  var productMenuSlideout = function() {
     cache.$openProductMenuSlideout.click(function(evt) {
       evt.preventDefault();
-
-      $(this).hide();
-      cache.$productMenuSlideout.addClass(isOpenClass);
-      cache.$productMenuButtons.addClass(isOptionOpenClass);
-      cache.$productMenuButtons.show();
-      cache.$shareButton.hide();
+      cache.$productActions.addClass('is-product-menu-slideout-open');
+      cache.$productMenuSlideout.addClass('is-open');
     });
 
     cache.$cloeseProductMenuSlideout.click(function(evt) {
       evt.preventDefault();
-
-      cache.$productMenuSlideout.removeClass(isOpenClass);
-      cache.$productMenuButtons.hide();
-      cache.$openProductMenuSlideout.show();
-      cache.$shareButton.show();
+      closeProductMenuSlideout();
     })
   };
 
-  var productShareSlideout = function() {
-    var isActiveClass = 'is-active',
-        isOpenClass = 'is-open',
-        isShareOpenClass = 'is-share-open';
+  var closeProductMenuSlideout = function() {
+    cache.$productActions.removeClass('is-product-menu-slideout-open');
+    cache.$productMenuSlideout.removeClass('is-open');
+  };
 
+  var productShareSlideout = function() {
     cache.$openProductShareSlideout.click(function(evt) {
       evt.preventDefault();
 
-      $(this).hide();
-      cache.$openProductMenuSlideout.hide();
-      cache.$productMenuButtons.addClass(isShareOpenClass);
-      cache.$closeShare.addClass(isActiveClass);
-      cache.$productShareSlideout.addClass(isOpenClass);
+      if (isProductMenuSlideoutOpen()) {
+        closeProductMenuSlideout();
+      }
+
+      if (isNotificationOpen()) {
+        closeNotification();
+      }
+
+      cache.$productActions.addClass('is-product-share-slideout-open');
+      cache.$productShareSlideout.addClass('is-open');
     });
 
     cache.$closeProductShareSlideout.click(function(evt) {
       evt.preventDefault();
-
-      cache.$productShareSlideout.removeClass(isOpenClass);
-      cache.$closeShare.removeClass(isActiveClass);
-      cache.$openProductMenuSlideout.show();
-      cache.$openProductShareSlideout.show();
-      cache.$productMenuButtons.removeClass(isShareOpenClass);
+      cache.$productActions.removeClass('is-product-share-slideout-open');
+      cache.$productShareSlideout.removeClass('is-open');
     });
   };
 
@@ -315,9 +318,77 @@ var theme = (function($) {
     });
   };
 
+  var formOverride = function() {
+    if (cache.$addToBag.length) {
+      cache.$formContainer.on('submit', function(evt) {
+        evt.preventDefault();
+        ShopifyAPI.addItemFromForm(evt.target, onItemAdded);
+      });
+    }
+  };
+
+  var onItemAdded = function(lineItem) {
+    if (isProductMenuSlideoutOpen()) {
+      closeProductMenuSlideout();
+    }
+    notification('success', lineItem.title + ' was added to your shopping cart.');
+  };
+
+  var isNotificationOpen = function() {
+    return cache.$errorEl.hasClass('is-open');
+  };
+
+  var notification = function(type, message, callback) {
+    var notificationClasses = 'notification ' + type,
+        notificationTimeout,
+        isOpenClass = 'is-open';
+
+    cache.$errorEl.attr('class', notificationClasses);
+
+    if (type === 'confirm') {
+      var confirmOptions = '<br><a class="confirm-true" href="#">Yes</a><a class="confirm-false" href="#">No</a>';
+
+      cache.$errorTextEl.html(message + confirmOptions);
+      cache.$errorEl.addClass(isOpenClass);
+
+      cache.$errorEl.find('.confirm-true').click(function(e) {
+        e.preventDefault();
+        callback();
+        cache.$errorEl.removeClass(isOpenClass);
+        return true;
+      });
+
+      cache.$errorEl.find('.confirm-false').click(function(e) {
+        e.preventDefault();
+        cache.$errorEl.removeClass(isOpenClass);
+        return false;
+      });
+
+    } else {
+      cache.$errorTextEl.html(message);
+      cache.$errorEl.addClass(isOpenClass);
+
+      // clearTimeout(notificationTimeout);
+      // notificationTimeout = setTimeout(function() {
+      //   $errorEl.removeClass(isOpenClass);
+      // }, 4000);
+    }
+
+    cache.$closeNotification.click(function(evt) {
+      evt.preventDefault();
+      closeNotification();
+    });
+
+  };
+
+  var closeNotification = function() {
+    cache.$errorEl.removeClass('is-open');
+  };
+
   return {
     init: init,
-    productPage: productPage
+    productPage: productPage,
+    notification: notification
   };
 })(jQuery);
 

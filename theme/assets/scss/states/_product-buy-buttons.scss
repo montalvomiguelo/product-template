@@ -1,0 +1,9 @@
+.product-buy-buttons {
+  .is-product-menu-slideout-open & {
+    display: block;
+  }
+
+  .is-product-share-slideout-open & {
+    display: none;
+  }
+}

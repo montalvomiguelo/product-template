@@ -1,5 +1,6 @@
 .share-button {
   @extend %secondary-button;
+  display: inline-block;
   float: left;
   line-height: 2.5;
   padding-left: 0;
@@ -7,44 +8,34 @@
   text-align: center;
   width: 50px;
 
+  @include at-query($min, $post-break-medium) {
+    float: none;
+  }
+
   @include at-query($min, $post-break-large) {
     padding-left: 40px;
     padding-right: 40px;
     width: auto;
   }
 
-  .product-menu--has-share & {
-    @include at-query($min, $post-break-medium) {
-      position: absolute;
-      right: calc(7% + 440px);
+  @include element(icon) {
+    font-size: 18px;
+    color: $primary-color;
+
+    @include at-query($min, $post-break-large) {
+      display: none;
     }
   }
 
-  .product-menu--has-options & {
-    @include at-query($min, $post-break-medium) {
-      position: absolute;
-      right: calc(7% + 270px);
-    }
-  }
-
-}
-
-.share-button__text {
-  display: none;
-  color: $primary-color;
-  text-transform: uppercase;
-  font-size: 12px;
-
-  @include at-query($min, $post-break-large) {
-    display: block;
-  }
-}
-
-.share-button__icon {
-  font-size: 18px;
-  color: $primary-color;
-
-  @include at-query($min, $post-break-large) {
+  @include element(text) {
     display: none;
+    color: $primary-color;
+    text-transform: uppercase;
+    font-size: 12px;
+
+    @include at-query($min, $post-break-large) {
+      display: block;
+    }
   }
+
 }

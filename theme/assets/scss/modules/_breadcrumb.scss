@@ -1,7 +1,7 @@
 .breadcrumb {
   color: $secondary-color;
 
-  .product-menu & {
+  .product-actions & {
     display: none;
 
     @include at-query($min, $post-break-medium) {

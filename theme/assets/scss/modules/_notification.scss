@@ -1,0 +1,20 @@
+.notification {
+  @extend %product-menu-slideout;
+
+  @include element(header) {
+    @extend %product-menu-slideout__header;
+
+    h6 {
+      @extend %product-menu-slideout-header__title;
+    }
+
+    a {
+      @extend %product-menu-slideout-header__close;
+    }
+  }
+
+  @include element(inner) {
+    @extend %product-menu-slideout__content;
+    margin-bottom: 20px;
+  }
+}

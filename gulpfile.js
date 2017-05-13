@@ -14,6 +14,7 @@ gulp.task('scripts', function() {
       'node_modules/flickity/dist/flickity.pkgd.js',
       'node_modules/sticky-kit/dist/sticky-kit.js',
       'theme/assets/js/variant_selection.js',
+      'theme/assets/js/shopify_jquery_ajax-api.js',
       'theme/assets/js/theme.js'
     ])
     .pipe($.newer('.build/assets/script.js.liquid'))

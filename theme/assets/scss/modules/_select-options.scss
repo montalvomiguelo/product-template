@@ -10,7 +10,7 @@
     width: auto;
   }
 
-  .product-menu--has-share & {
+  .product-actions--has-share & {
     @include at-query($max, $break-medium) {
       margin-left: 50px;
       width: calc(100% - 50px);

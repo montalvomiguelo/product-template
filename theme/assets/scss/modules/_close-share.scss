@@ -1,9 +1,14 @@
 .close-share {
-  @extend %secondary-button;
+  @extend %primary-button;
+  @extend %product-buy-buttons__button;
   display: none;
   font-size: 12px;
   line-height: 50px;
   padding-bottom: 0;
   padding-top: 0;
   text-transform: uppercase;
+
+  @include at-query($max, $break-medium) {
+    width: 100%;
+  }
 }

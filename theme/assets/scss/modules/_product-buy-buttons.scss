@@ -1,4 +1,4 @@
-.product-menu-buttons {
+.product-buy-buttons {
   @include clearfix();
   text-align: right;
 
@@ -6,11 +6,11 @@
     float: right;
   }
 
-  .product-menu--has-options & {
+  .product-actions--has-options & {
     display: none;
   }
 
-  .product-menu--has-share & {
+  .product-actions--has-share & {
     @include at-query($max, $break-medium) {
       margin-left: 50px;
       width: calc(100% - 50px);
@@ -18,18 +18,18 @@
   }
 
   > #Quantity {
-    @extend %product-menu-buttons__element;
+    @extend %product-buy-buttons__element;
     @extend %product-menu-buttons__quantity;
     height: 50px;
   }
 
   .add-to-bag {
-    @extend %product-menu-buttons__element;
-    @extend %product-menu-buttons__button;
+    @extend %product-buy-buttons__element;
+    @extend %product-buy-buttons__button;
   }
 
   .js-qty {
-    @extend %product-menu-buttons__element;
+    @extend %product-buy-buttons__element;
     @extend %product-menu-buttons__quantity;
   }
 

@@ -3,9 +3,9 @@
 @import 'product-images';
 @import 'product-details';
 @import 'product-description';
-@import 'product-menu-container';
-@import 'product-menu';
-@import 'product-menu-buttons';
+@import 'product-actions-container';
+@import 'product-actions';
+@import 'product-buy-buttons';
 @import 'js-qty';
 @import 'icomoon';
 @import 'button';
@@ -24,8 +24,8 @@
 @import 'product-share-slideout';
 @import 'social-sharing';
 @import 'close-share';
-@import 'cart-menu-container';
-@import 'cart-menu';
+@import 'cart-actions-container';
+@import 'cart-actions';
 @import 'checkout-button';
 @import 'cart-items';
 @import 'page-header';
@@ -34,3 +34,4 @@
 @import 'spr-badge';
 @import 'cart-item';
 @import 'cart-empty-message';
+@import 'notification';

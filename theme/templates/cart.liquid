@@ -53,10 +53,10 @@
         <span>{{ cart.total_price | money }}</span>
       </p>
     </div>
-    <div class="cart-menu-container">
-      <div class="cart-menu">
-        <a class="button cart-menu__continue" href="{{ continue_shopping_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
-        <button class="button checkout-button" type="submit" name="checkout">
+    <div class="cart-actions-container">
+      <div class="cart-actions">
+        <a class="cart-actions__continue" href="{{ continue_shopping_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
+        <button class="checkout-button" type="submit" name="checkout">
           <span class="checkout-button__text">{{ 'cart.general.checkout' | t }}</span>
           <span class="checkout-button__subtotal">{{ cart.total_price | money }}</span>
         </button>

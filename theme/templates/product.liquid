@@ -81,11 +81,11 @@
     </div>
   </div>
 
-  <div class="product-menu-container" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+  <div class="product-actions-container" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
     <meta itemprop="priceCurrency" content="{{ shop.currency }}">
     <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-    <form method="post" action="/cart/add" enctype="multipart/form-data">
+    <form id="AddToBagForm" method="post" action="/cart/add" enctype="multipart/form-data">
       <div id="ProductMenuSlideout" class="product-menu-slideout">
         <div class="product-menu-slideout__header">
           <h6>
@@ -144,7 +144,15 @@
         </div>
       {% endif %}
 
-      <div class="product-menu{% if settings.social_sharing_products %} product-menu--has-share{% endif %}{% if product.options.size >= 1 and product.options.first != 'Title' %} product-menu--has-options{% endif %}">
+      <div class="notification">
+        <div class="notification__header">
+          <h6>{{ product.title }}</h6>
+          <a class="icon-x js-notification-slideout-close" href="#"></a>
+        </div>
+        <div class="notification__inner"></div>
+      </div>
+
+      <div id="ProductActions" class="product-actions{% if settings.social_sharing_products %} product-actions--has-share{% endif %}{% if product.options.size >= 1 and product.options.first != 'Title' %} product-actions--has-options{% endif %}">
         {% include 'breadcrumb' %}
 
         {% if settings.social_sharing_products %}
@@ -167,7 +175,7 @@
           </a>
         {% endif %}
 
-        <div id="ProductMenuButtons" class="product-menu-buttons">
+        <div id="ProductBuyButtons" class="product-buy-buttons">
           <input type="number" id="Quantity" name="quantity" value="1" min="1" class="quantity-selector">
           <button class="add-to-bag" id="AddToBag" name="add" type="submit" title="{{ 'products.product.add_to_bag' | t }}">
             <span id="AddToBagText" class="add-to-bag__text">{{ 'products.product.add_to_bag' | t }}</span>

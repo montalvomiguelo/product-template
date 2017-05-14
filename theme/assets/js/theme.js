@@ -3,7 +3,8 @@ var theme = (function($) {
 
   var variables = {
     mediaQuerySmall: 668,
-    mediaQueryMedium: 800
+    mediaQueryMedium: 800,
+    milliseconds: 300
   };
 
   var cache = {
@@ -229,15 +230,27 @@ var theme = (function($) {
     cache.$openProductShareSlideout.click(function(evt) {
       evt.preventDefault();
 
+      var delay = false;
+
       if (isProductMenuSlideoutOpen()) {
         closeProductMenuSlideout();
+        delay = true;
       }
 
       if (isNotificationOpen()) {
         closeNotification();
+        delay = true;
       }
 
       cache.$productActions.addClass('is-product-share-slideout-open');
+
+      if (delay) {
+        setTimeout(function() {
+          cache.$productShareSlideout.addClass('is-open');
+        }, variables.milliseconds);
+        return;
+      }
+
       cache.$productShareSlideout.addClass('is-open');
     });
 
@@ -328,10 +341,24 @@ var theme = (function($) {
   };
 
   var onItemAdded = function(lineItem) {
+    var source   = $("#ItemAdded").html(),
+        template = Handlebars.compile(source),
+        context = {
+          quantity: lineItem.quantity,
+          message: "{{ 'cart.general.item_added' | t }}",
+          title: lineItem.title
+        },
+        html = template(context);
+
     if (isProductMenuSlideoutOpen()) {
       closeProductMenuSlideout();
+      setTimeout(function() {
+        notification('success', html);
+      }, variables.milliseconds);
+      return;
     }
-    notification('success', lineItem.title + ' was added to your shopping cart.');
+
+    notification('success', html);
   };
 
   var isNotificationOpen = function() {

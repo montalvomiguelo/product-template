@@ -1,3 +1,5 @@
-.product-menu-slideout.is-open {
-  @extend %slideout-is-open;
+.product-menu-slideout {
+  &.is-open {
+    @extend %slideout-is-open;
+  }
 }

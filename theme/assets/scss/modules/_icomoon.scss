@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-bag:before {
+  content: "\e909";
+}
 .icon-google-plus:before {
   content: "\e904";
 }
@@ -51,4 +54,3 @@
 .icon-plus:before {
   content: "\e902";
 }
-

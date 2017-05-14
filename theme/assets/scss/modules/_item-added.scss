@@ -1,0 +1,35 @@
+.item-added {
+  text-align: center;
+
+  @include element(icon) {
+    position: relative;
+    margin-bottom: 10px;
+
+    [class^="icon"] {
+      font-size: 37px;
+    }
+
+    em {
+      font-size: 11px;
+      font-style: normal;
+      left: 0;
+      line-height: normal;
+      margin-top: -2px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+    }
+  }
+
+  @include element(message) {
+    font-size: 24px;
+    font-weight: $header-font-weight;
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+
+  @include element(title) {
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+}

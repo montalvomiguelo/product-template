@@ -31,7 +31,8 @@
       "note": "Special instructions for seller",
       "continue_shopping": "Continue Shopping",
       "remove": "Remove",
-      "subtotal": "Subtotal"
+      "subtotal": "Subtotal",
+      "item_added": "Added to bag"
     }
   }
 }

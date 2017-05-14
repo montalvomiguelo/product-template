@@ -99,6 +99,7 @@
 %product-menu-slideout__header {
   @extend %product-menu-slideout__content;
   @extend %table;
+  color: $primary-color;
   border-bottom: 1px solid $border-color;
   font-size: 14px;
   margin-bottom: 20px;

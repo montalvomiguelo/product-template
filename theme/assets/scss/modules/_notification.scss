@@ -16,5 +16,10 @@
   @include element(inner) {
     @extend %product-menu-slideout__content;
     margin-bottom: 20px;
+    text-align: center;
+  }
+
+  @include modifier(error) {
+    color: $error-text-color;
   }
 }

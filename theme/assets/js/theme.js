@@ -335,7 +335,7 @@ var theme = (function($) {
     if (cache.$addToBag.length) {
       cache.$formContainer.on('submit', function(evt) {
         evt.preventDefault();
-        ShopifyAPI.addItemFromForm(evt.target, onItemAdded);
+        ShopifyAPI.addItemFromForm(evt.target, onItemAdded, onItemError);
       });
     }
   };
@@ -352,13 +352,35 @@ var theme = (function($) {
 
     if (isProductMenuSlideoutOpen()) {
       closeProductMenuSlideout();
+
       setTimeout(function() {
         notification('success', html);
       }, variables.milliseconds);
+
       return;
     }
 
     notification('success', html);
+  };
+
+  var onItemError = function(XMLHttpRequest, textStatus) {
+    var data = eval('(' + XMLHttpRequest.responseText + ')');
+
+    if (!!data.message) {
+      if (data.status == 422) {
+        if (isProductMenuSlideoutOpen()) {
+          closeProductMenuSlideout();
+
+          setTimeout(function() {
+            notification('error', data.description);
+          }, variables.milliseconds);
+
+          return;
+        }
+
+        notification('error', data.description);
+      }
+    }
   };
 
   var isNotificationOpen = function() {
@@ -366,7 +388,7 @@ var theme = (function($) {
   };
 
   var notification = function(type, message, callback) {
-    var notificationClasses = 'notification ' + type,
+    var notificationClasses = 'notification notification--' + type,
         notificationTimeout,
         isOpenClass = 'is-open';
 

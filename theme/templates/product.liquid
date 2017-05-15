@@ -155,6 +155,21 @@
       <div id="ProductActions" class="product-actions{% if settings.social_sharing_products %} product-actions--has-share{% endif %}{% if product.options.size >= 1 and product.options.first != 'Title' %} product-actions--has-options{% endif %}">
         {% include 'breadcrumb' %}
 
+        <div class="product-cart-buttons">
+          {% comment %}
+            Determining the handle of the collection for the 'continue shopping' link.
+          {% endcomment %}
+
+          {% assign collection_url = product.collections.last.url %}
+          {% if collection_url == '/collections/frontpage' or collection_url == blank %}
+            {% assign collection_url = '/collections/all' %}
+          {% endif %}
+          <a class="product-cart-buttons__continue-shopping" href="{{ collection_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
+          <a class="product-cart-buttons__view-cart" href="/cart">{{ 'cart.general.view_bag' | t }}</a>
+        </div>
+
+        <a class="close-notification-button js-notification-slideout-close" href="#">{{ 'general.social.close' | t }}</a>
+
         {% if settings.social_sharing_products %}
           <a class="share-button js-product-share-slideout-open" href="#">
             <span class="share-button__text">{{ 'general.social.share' | t }}</span>

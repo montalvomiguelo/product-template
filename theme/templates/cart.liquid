@@ -14,7 +14,7 @@
     <ul class="cart-items">
       {% for item in cart.items %}
         {% comment %}
-        Determining the handle of the collection that was last seen for the 'continue shopping' link.
+          Determining the handle of the collection that was last seen for the 'continue shopping' link.
         {% endcomment %}
 
         {% assign collection_url = item.product.collections.last.url %}

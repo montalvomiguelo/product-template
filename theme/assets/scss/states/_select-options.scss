@@ -6,4 +6,12 @@
   .is-product-share-slideout-open & {
     display: none;
   }
+
+  .is-item-added & {
+    display: none;
+  }
+
+  .is-item-error & {
+    display: none;
+  }
 }

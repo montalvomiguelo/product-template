@@ -32,7 +32,8 @@
       "continue_shopping": "Continue Shopping",
       "remove": "Remove",
       "subtotal": "Subtotal",
-      "item_added": "Added to bag"
+      "item_added": "Added to bag",
+      "view_bag": "View bag"
     }
   }
 }

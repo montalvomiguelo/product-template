@@ -33,9 +33,19 @@
   }
 }
 
-%secondary-button {
-  @extend %button;
-  background: $border-color;
+%close-notification-button {
+  @extend %primary-button;
+  @extend %product-buy-buttons__button;
+  display: none;
+  font-size: 12px;
+  line-height: 50px;
+  padding-bottom: 0;
+  padding-top: 0;
+  text-transform: uppercase;
+
+  @include at-query($max, $break-medium) {
+    width: 100%;
+  }
 }
 
 %primary-button {
@@ -122,6 +132,11 @@
   @extend %table-cell;
   font-size: inherit;
   line-height: normal;
+}
+
+%secondary-button {
+  @extend %button;
+  background: $border-color;
 }
 
 %table {

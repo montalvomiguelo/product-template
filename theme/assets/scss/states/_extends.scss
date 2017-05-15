@@ -1,4 +1,4 @@
 %slideout-is-open {
-  @include prefixer(transition, max-height .3s ease, ms webkit moz spec);
+  @include prefixer(transition, max-height .3s linear, ms webkit moz spec);
   max-height: calc(100vh - 80px);
 }

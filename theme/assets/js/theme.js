@@ -350,6 +350,8 @@ var theme = (function($) {
         },
         html = template(context);
 
+    cache.$productActions.addClass('is-item-added');
+
     if (isProductMenuSlideoutOpen()) {
       closeProductMenuSlideout();
 
@@ -365,6 +367,8 @@ var theme = (function($) {
 
   var onItemError = function(XMLHttpRequest, textStatus) {
     var data = eval('(' + XMLHttpRequest.responseText + ')');
+
+    cache.$productActions.addClass('is-item-error');
 
     if (!!data.message) {
       if (data.status == 422) {
@@ -432,6 +436,25 @@ var theme = (function($) {
 
   var closeNotification = function() {
     cache.$errorEl.removeClass('is-open');
+    removeNotificationClassesFromProductActionsEle();
+  };
+
+  var removeNotificationClassesFromProductActionsEle = function() {
+    if (!cache.$productActions.length) {
+      return;
+    }
+
+    var isItemAddedClass = 'is-item-added',
+        isItemErrorClass = 'is-item-error';
+
+    if (cache.$productActions.hasClass(isItemAddedClass)) {
+      cache.$productActions.removeClass(isItemAddedClass);
+    }
+
+    if (cache.$productActions.hasClass(isItemErrorClass)) {
+      cache.$productActions.removeClass(isItemErrorClass);
+    }
+
   };
 
   return {

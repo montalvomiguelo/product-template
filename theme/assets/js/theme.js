@@ -421,10 +421,13 @@ var theme = (function($) {
       cache.$errorTextEl.html(message);
       cache.$errorEl.addClass(isOpenClass);
 
-      // clearTimeout(notificationTimeout);
-      // notificationTimeout = setTimeout(function() {
-      //   $errorEl.removeClass(isOpenClass);
-      // }, 4000);
+      if (type === 'error') {
+        clearTimeout(notificationTimeout);
+        notificationTimeout = setTimeout(function() {
+          closeNotification();
+        }, 4000);
+      }
+
     }
 
     cache.$closeNotification.click(function(evt) {

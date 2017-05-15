@@ -17,6 +17,12 @@
     @extend %product-menu-slideout__content;
     margin-bottom: 20px;
     text-align: center;
+
+    [class^="confirm-"] {
+      display: inline-block;
+      margin: 1em 1em 0;
+      text-decoration: underline;
+    }
   }
 
   @include modifier(error) {

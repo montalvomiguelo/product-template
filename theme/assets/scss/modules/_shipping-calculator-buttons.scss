@@ -1,11 +1,12 @@
-.product-cart-buttons {
+.shipping-calculator-buttons {
   @extend %product-cart-buttons;
 
-  @include element(continue-shopping) {
+  @include element(cancel) {
     @extend %product-cart-buttons__continue-shopping;
   }
 
-  @include element(view-cart) {
+  @include element(submit) {
     @extend %product-cart-buttons__view-cart;
+    cursor: pointer;
   }
 }

@@ -34,6 +34,19 @@
       "subtotal": "Subtotal",
       "item_added": "Added to bag",
       "view_bag": "View bag"
+    },
+    "shipping_calculator": {
+      "calculate_shipping": "Calculate shipping",
+      "title": "Shipping rates calculator",
+      "country": "Country",
+      "state": "Province",
+      "zip": "Zip \/ Postal Code",
+      "submit": "Get Rates",
+      "multiple_rates": "shipping rates available, starting at",
+      "single_rate": "There is one shipping rate available for",
+      "no_rates": "We do not ship to this destination.",
+      "at": "at",
+      "cancel": "Cancel"
     }
   }
 }

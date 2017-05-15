@@ -13,18 +13,6 @@
   <form method="post" action="/cart" id="cart-form" class="cart-form">
     <ul class="cart-items">
       {% for item in cart.items %}
-        {% comment %}
-          Determining the handle of the collection that was last seen for the 'continue shopping' link.
-        {% endcomment %}
-
-        {% assign collection_url = item.product.collections.last.url %}
-        {% if collection_url == '/collections/frontpage' or collection_url == blank %}
-          {% assign collection_url = '/collections/all' %}
-        {% endif %}
-
-        {% if forloop.first %}
-          {% assign continue_shopping_url = collection_url %}
-        {% endif %}
 
         <li class="cart-item">
           <a class="cart-item__image" href="{{ item.url | within: collections.all }}">
@@ -54,8 +42,25 @@
       </p>
     </div>
     <div class="cart-actions-container">
-      <div class="cart-actions">
-        <a class="cart-actions__continue" href="{{ continue_shopping_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
+      <div id="ShippingRatesSlideout" class="shipping-rates-slideout">
+        <div class="shipping-rates-slideout__header">
+          <h6>{{ 'cart.shipping_calculator.calculate_shipping' | t }}</h6>
+          <a class="icon-x js-shipping-rates-slideout-close" href="#"></a>
+        </div>
+        <div class="shipping-rates-slideout__content">
+          {% include 'shipping-calculator' %}
+        </div>
+      </div>
+
+      <div id="CartActions" class="cart-actions">
+
+        <div class="shipping-calculator-buttons">
+          <a class="shipping-calculator-buttons__cancel js-shipping-rates-slideout-close" href="#">{{ 'cart.shipping_calculator.cancel' | t }}</a>
+          <a id="get-rates-submit" class="get-rates styled-submit shipping-calculator-buttons__submit" value="">{{ 'cart.shipping_calculator.submit' | t }}</a>
+        </div>
+
+        <a class="calculate-shipping-button js-shipping-rates-slideout-open" href="#">{{ 'cart.shipping_calculator.calculate_shipping' | t }}</a>
+
         <button class="checkout-button" type="submit" name="checkout">
           <span class="checkout-button__text">{{ 'cart.general.checkout' | t }}</span>
           <span class="checkout-button__subtotal">{{ cart.total_price | money }}</span>

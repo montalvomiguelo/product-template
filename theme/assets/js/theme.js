@@ -18,12 +18,16 @@ var theme = (function($) {
     $openProductMenuSlideout: $('.js-product-menu-slideout-open'),
     $cloeseProductMenuSlideout: $('.js-product-menu-slideout-close'),
     $closeProductShareSlideout: $('.js-product-share-slideout-close'),
+    $openShippingRatesSlideout: $('.js-shipping-rates-slideout-open'),
+    $closeShippingRatesSlideout: $('.js-shipping-rates-slideout-close'),
     $closeShare: $('#CloseShare'),
     $openProductShareSlideout: $('.js-product-share-slideout-open'),
     $productShareSlideout: $('#ProductShareSlideout'),
     $productMenuSlideout: $('#ProductMenuSlideout'),
+    $shippingRatesSlideout: $('#ShippingRatesSlideout'),
     $productImages: $('#ProductImages'),
     $productActions: $('#ProductActions'),
+    $cartActions: $('#CartActions'),
     $productDetails: $('.product-details'),
     $relatedProducts: $('.related-products'),
     $shareButton: $('.share-button'),
@@ -42,6 +46,7 @@ var theme = (function($) {
     qtySelectors();
     productMenuSlideout();
     productShareSlideout();
+    shippingRatesSlideout();
     productImages();
     relatedProductsSlider();
     onResize();
@@ -458,6 +463,20 @@ var theme = (function($) {
       cache.$productActions.removeClass(isItemErrorClass);
     }
 
+  };
+
+  var shippingRatesSlideout = function() {
+    cache.$openShippingRatesSlideout.click(function(evt) {
+      evt.preventDefault();
+      cache.$shippingRatesSlideout.addClass('is-open');
+      cache.$cartActions.addClass('is-shipping-rates-slideout-open');
+    });
+
+    cache.$closeShippingRatesSlideout.click(function(evt) {
+      evt.preventDefault();
+      cache.$shippingRatesSlideout.removeClass('is-open');
+      cache.$cartActions.removeClass('is-shipping-rates-slideout-open');
+    });
   };
 
   return {

@@ -1,0 +1,20 @@
+.shipping-calculator {
+  color: $secondary-color;
+  margin-bottom: 20px;
+
+  label[for] {
+    display: block;
+  }
+
+  input,
+  select {
+    display: block;
+    width: 100%;
+  }
+
+  .grid__item {
+    @include at-query($max, $break-small) {
+      margin-bottom: 20px;
+    }
+  }
+}

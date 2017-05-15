@@ -6,8 +6,8 @@
   width: 50%;
 
   @include at-query($min, $post-break-medium) {
-    display: inline-block;
-    float: none;
+    display: block;
+    float: right;
     vertical-align: middle;
     margin-left: 30px;
     min-width: 240px;

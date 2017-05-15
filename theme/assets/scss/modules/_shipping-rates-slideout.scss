@@ -1,0 +1,19 @@
+.shipping-rates-slideout {
+  @extend %product-menu-slideout;
+
+  @include element(content) {
+    @extend %product-menu-slideout__content;
+  }
+
+  @include element(header) {
+    @extend %product-menu-slideout__header;
+
+    h6 {
+      @extend %product-menu-slideout-header__title;
+    }
+
+    a {
+      @extend %product-menu-slideout-header__close;
+    }
+  }
+}

@@ -12,7 +12,7 @@ body {
   color: $primary-color;
   font-family: $secondary-font;
   font-size: 14px;
-  line-height: 1;
+  line-height: $line-height-base;
   padding-top: $header-height-mobile;
 
   @include at-query($min, $post-break-small) {
@@ -129,11 +129,10 @@ select {
   border: 1px solid $secondary-color;
   color: $secondary-color;
   font-family: $secondary-font;
-  font-size: 14px;
-  height: 60px;
-  line-height: 2em;
+  font-size: 16px;
+  line-height: normal;
   max-width: 100%;
-  padding: 0 50px 0 20px;
+  padding: 14px 50px 14px 20px;
 }
 
 select::-ms-expand {

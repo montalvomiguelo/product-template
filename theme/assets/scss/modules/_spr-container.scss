@@ -1,3 +1,13 @@
 .spr-container {
-  margin-top: 80px;
+  border-bottom-color: $border-color;
+  border-top-color: $border-color;
+
+  label[for] {
+    display: block;
+  }
+
+  .spr-button-primary {
+    @extend %close-notification-button;
+    display: inline-block;
+  }
 }

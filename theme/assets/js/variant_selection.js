@@ -138,7 +138,9 @@ Shopify.Product.prototype.getVariantById = function(id) {
 // ---------------------------------------------------------------------------
 // Money format handler
 // ---------------------------------------------------------------------------
+{% raw %}
 Shopify.money_format = "${{amount}}";
+{% endraw %}
 Shopify.formatMoney = function(cents, format) {
   if (typeof cents == 'string') { cents = cents.replace('.',''); }
   var value = '';
@@ -146,7 +148,7 @@ Shopify.formatMoney = function(cents, format) {
   var formatString = (format || this.money_format);
 
   function defaultOption(opt, def) {
-     return (typeof opt == 'undefined' ? def : opt);
+    return (typeof opt == 'undefined' ? def : opt);
   }
 
   function formatWithDelimiters(number, precision, thousands, decimal) {

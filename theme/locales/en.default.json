@@ -7,6 +7,10 @@
     "social": {
       "share": "Share",
       "close": "Close"
+    },
+    "notification": {
+      "yes": "Yes",
+      "no": "No"
     }
   },
   "products": {
@@ -19,7 +23,8 @@
       "unavailable": "Unavailable",
       "quantity": "Quantity",
       "add_to_bag": "Add to Bag",
-      "select_options": "Select Options"
+      "select_options": "Select Options",
+      "stock_unavailable": "The item could not be added to your cart because there are not enough in stock."
     }
   },
   "cart": {

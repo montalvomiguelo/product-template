@@ -63,7 +63,9 @@ var theme = (function($) {
       var $el = $(this),
         currentQty = $el.val(),
         inputName = $el.attr('name'),
-        inputId = $el.attr('id');
+        inputId = $el.attr('id'),
+        line = $el.data('line'),
+        handle = $el.data('handle');
 
       var itemAdd = currentQty + 1,
         itemMinus = currentQty - 1,
@@ -77,7 +79,9 @@ var theme = (function($) {
           itemAdd: itemAdd,
           itemMinus: itemMinus,
           inputName: inputName,
-          inputId: inputId
+          inputId: inputId,
+          line: line,
+          handle: handle
         };
 
       // Append new quantity selector then remove original
@@ -87,8 +91,8 @@ var theme = (function($) {
     // Setup listeners to add/subtract from the input
     cache.$body.on('click', '.js-qty__adjust', function() {
       var $el = $(this),
-          id = $el.data('id'),
           $qtySelector = $el.siblings('.js-qty__num'),
+          handle = $qtySelector.data('handle'),
           qty = parseInt($qtySelector.val().replace(/\D/g, ''));
 
       var qty = validateQty(qty);
@@ -101,13 +105,71 @@ var theme = (function($) {
         if (qty <= 1) qty = 1;
       }
 
-      // Update the input's number
-      $qtySelector.val(qty);
+      // If it has a data-line, update the cart.
+      // Otherwise, just update the input's number
+      if ($qtySelector.data('line')) {
+        // Update cart after short timeout so user doesn't create simultaneous ajax calls
+        clearTimeout(qtyUpdateTimeout);
+        var qtyUpdateTimeout = setTimeout(function() {
+          ShopifyAPI.getProduct(handle, function(product) {
+            validateAvailabilityCallback(qty, $qtySelector, product);
+          });
+        }, 200);
+      } else {
+        $qtySelector.val(qty);
+      }
     });
-
   };
 
-  var validateQty = function (qty) {
+  var getProductIdFromKey = function(key) {
+    return key.split(':')[0];
+  };
+
+  var validateAvailabilityCallback = function(qty, $qtySelector, product) {
+    var id = getProductIdFromKey($qtySelector.data('id')),
+        line = $qtySelector.data('line');
+
+    var quantityIsAvailable = true;
+
+    // This returns all variants of a product.
+    // Loop through them to get our desired one.
+    for (var i = 0; i < product.variants.length; i++) {
+      var variant = product.variants[i];
+      if (variant.id === id) {
+        break;
+      }
+    }
+
+    // If the variant tracks inventory and does not sell when sold out
+    // we can compare the requested with available qty
+    if (variant.inventory_management !== null && variant.inventory_policy === 'deny') {
+      var maxQuantity = (variant.inventory_quantity > 0) ? variant.inventory_quantity : 1;
+
+      if (qty > variant.inventory_quantity && qty > 1) {
+        // Show notification with error message
+        notification('error', '{{ "products.product.stock_unavailable" | t }}');
+        cache.$cartActions.addClass('is-qty-error');
+
+        // Set qty to max amount available
+        $qtySelector.val(maxQuantity);
+
+        quantityIsAvailable = false;
+      }
+    }
+
+    if (quantityIsAvailable) {
+      updateItemQuantity(line, qty, $qtySelector);
+    }
+  };
+
+  var updateItemQuantity = function(line, qty, $qtySelector) {
+    ShopifyAPI.changeItem(line, qty, function(cart) {
+      $qtySelector.val(qty);
+      $('#TotalPrice').html(Shopify.formatMoney(cart.total_price));
+    });
+  };
+
+  var validateQty = function(qty) {
     if((parseFloat(qty) == parseInt(qty)) && !isNaN(qty)) {
       // We have a valid number!
     } else {
@@ -404,7 +466,7 @@ var theme = (function($) {
     cache.$errorEl.attr('class', notificationClasses);
 
     if (type === 'confirm') {
-      var confirmOptions = '<br><a class="confirm-true" href="#">Yes</a><a class="confirm-false" href="#">No</a>';
+      var confirmOptions = '<br><a class="confirm-true" href="#">{{ "general.notification.yes" | t }}</a><a class="confirm-false" href="#">{{ "general.notification.no" | t }}</a>';
 
       cache.$errorTextEl.html(message + confirmOptions);
       cache.$errorEl.addClass(isOpenClass);
@@ -445,6 +507,28 @@ var theme = (function($) {
   var closeNotification = function() {
     cache.$errorEl.removeClass('is-open');
     removeNotificationClassesFromProductActionsEle();
+    removeNotificationClassesFromCartActionsEle();
+  };
+
+  var removeNotificationClassesFromCartActionsEle = function() {
+    if (!cache.$cartActions.length) {
+      return;
+    }
+
+    var cssClasses = [
+      'is-qty-error'
+    ];
+
+    removeClassesFromEle(cssClasses, cache.$cartActions);
+
+  };
+
+  var removeClassesFromEle = function(cssClasses, $ele) {
+    cssClasses.forEach(function(klass) {
+      if ($ele.hasClass(klass)) {
+        $ele.removeClass(klass);
+      }
+    });
   };
 
   var removeNotificationClassesFromProductActionsEle = function() {
@@ -452,16 +536,12 @@ var theme = (function($) {
       return;
     }
 
-    var isItemAddedClass = 'is-item-added',
-        isItemErrorClass = 'is-item-error';
+    var cssClasses = [
+      'is-item-added',
+      'is-item-error'
+    ];
 
-    if (cache.$productActions.hasClass(isItemAddedClass)) {
-      cache.$productActions.removeClass(isItemAddedClass);
-    }
-
-    if (cache.$productActions.hasClass(isItemErrorClass)) {
-      cache.$productActions.removeClass(isItemErrorClass);
-    }
+    removeClassesFromEle(cssClasses, cache.$productActions);
 
   };
 

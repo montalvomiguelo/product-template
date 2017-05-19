@@ -38,6 +38,10 @@ ShopifyAPI.onCartUpdate = function(cart) {
   // alert('There are now ' + cart.item_count + ' items in the cart.');
 };
 
+ShopifyAPI.onProduct = function(product) {
+  alert('Received everything we ever wanted to know about ' + product.title);
+};
+
 ShopifyAPI.updateCartNote = function(note, callback) {
   var $body = $(document.body),
   params = {
@@ -126,6 +130,18 @@ ShopifyAPI.getCart = function(callback) {
       ShopifyAPI.onCartUpdate(cart);
     }
     $(document.body).trigger('afterGetCart.ajaxCart', cart);
+  });
+};
+
+// GET products/<product-handle>.js returns the product in JSON.
+ShopifyAPI.getProduct = function(handle, callback) {
+  jQuery.getJSON('/products/' + handle + '.js', function (product, textStatus) {
+    if ((typeof callback) === 'function') {
+      callback(product);
+    }
+    else {
+      Shopify.onProduct(product);
+    }
   });
 };
 

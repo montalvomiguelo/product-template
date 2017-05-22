@@ -135,7 +135,7 @@ var theme = (function($) {
     // Loop through them to get our desired one.
     for (var i = 0; i < product.variants.length; i++) {
       var variant = product.variants[i];
-      if (variant.id === id) {
+      if (variant.id == id) {
         break;
       }
     }
@@ -143,15 +143,14 @@ var theme = (function($) {
     // If the variant tracks inventory and does not sell when sold out
     // we can compare the requested with available qty
     if (variant.inventory_management !== null && variant.inventory_policy === 'deny') {
-      var maxQuantity = (variant.inventory_quantity > 0) ? variant.inventory_quantity : 1;
 
-      if (qty > variant.inventory_quantity && qty > 1) {
+      if (variant.inventory_quantity < qty) {
         // Show notification with error message
         notification('error', '{{ "products.product.stock_unavailable" | t }}');
         cache.$cartActions.addClass('is-qty-error');
 
         // Set qty to max amount available
-        $qtySelector.val(maxQuantity);
+        $qtySelector.val(variant.inventory_quantity);
 
         quantityIsAvailable = false;
       }
